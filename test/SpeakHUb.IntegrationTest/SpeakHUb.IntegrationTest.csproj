@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SpeakHub.UnitTest\SpeakHub.UnitTest.csproj" />
+  </ItemGroup>
+
 </Project>

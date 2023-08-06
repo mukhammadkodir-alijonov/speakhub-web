@@ -22,4 +22,13 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+    <Folder Include="Validations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\SpeakHub.Service\SpeakHub.Service.csproj" />
+  </ItemGroup>
+
 </Project>
