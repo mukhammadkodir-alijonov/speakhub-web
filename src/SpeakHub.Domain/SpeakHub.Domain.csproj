@@ -8,8 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Entities\Common\" />
-    <Folder Include="Constants\" />
-    <Folder Include="NewFolder\" />
   </ItemGroup>
 
 </Project>
