@@ -7,11 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Enums\" />
-    <Folder Include="Entities\" />
-    <Folder Include="Common\" />
-    <Folder Include="Exceptions\" />
+    <Folder Include="Entities\Common\" />
     <Folder Include="Constants\" />
+    <Folder Include="NewFolder\" />
   </ItemGroup>
 
 </Project>
