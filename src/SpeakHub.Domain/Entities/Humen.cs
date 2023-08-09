@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SpeakHub.Domain.Entities
 {
-    public class Human : Auditable
+    public class Humen : Auditable
     {
         public string FirstName { get; set; } = string.Empty;
 
