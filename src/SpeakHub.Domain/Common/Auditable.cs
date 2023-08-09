@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpeakHub.Domain.Common
 {
-    public class Auditable : BaseEntity
+    public class Auditable
     {
         public DateTime CreatedAt { get; set; }
 

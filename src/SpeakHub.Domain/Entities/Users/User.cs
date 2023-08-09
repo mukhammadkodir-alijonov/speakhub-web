@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SpeakHub.Domain.Entities.Users
 {
-    public class User : Human
+    public class User : Humen
     {
         public string Username { get; set; } = string.Empty;
         public string PasswordHash { get; set; } = string.Empty;
