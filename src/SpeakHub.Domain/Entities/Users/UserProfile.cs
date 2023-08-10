@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SpeakHub.Domain.Entities.Users
 {
-    public class UserProfile : Human
+    public class UserProfile : Humen
     {
         public string FullName { get; set; } = string.Empty;
         public string Bio { get; set; } = string.Empty;

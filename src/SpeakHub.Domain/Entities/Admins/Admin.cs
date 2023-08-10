@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SpeakHub.Domain.Entities.Admins
 {
-    public class Admin : Human
+    public class Admin : Humen
     {
         public string AdminAction { get; set; } = string.Empty;
         public DateTime ActionDate { get; set; }
