@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\Common\" />
+    <Compile Remove="Entities\Common\**" />
+    <EmbeddedResource Remove="Entities\Common\**" />
+    <None Remove="Entities\Common\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Constants\" />
     <Folder Include="NewFolder\" />
   </ItemGroup>

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpeakHub.Domain.Common
+namespace SpeakHub.Service.Interfaces.Admins
 {
-    public class BaseEntity
+    public interface IAdminHomeService
     {
-        public int Id { get; set; }
     }
 }

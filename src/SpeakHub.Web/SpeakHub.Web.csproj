@@ -9,6 +9,7 @@
   <ItemGroup>
     <Folder Include="Middlewares\" />
     <Folder Include="Configurations\" />
+    <Folder Include="wwwroot\media\images\" />
   </ItemGroup>
 
   <ItemGroup>
