@@ -8,13 +8,15 @@
 
   <ItemGroup>
     <Compile Remove="Entities\Common\**" />
+    <Compile Remove="NewFolder\**" />
     <EmbeddedResource Remove="Entities\Common\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
     <None Remove="Entities\Common\**" />
+    <None Remove="NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Constants\" />
-    <Folder Include="NewFolder\" />
   </ItemGroup>
 
 </Project>
