@@ -1,4 +1,5 @@
-﻿using RegistanFerghanaLC.Service.Common.Exceptions;
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using RegistanFerghanaLC.Service.Common.Exceptions;
 using RegistanFerghanaLC.Service.Common.Utils;
 using SpeakHub.DataAccess.Interfaces.Common;
 using SpeakHub.Domain.Entities.Tweets;
@@ -8,6 +9,8 @@ using SpeakHub.Service.ViewModels.TweetViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,34 +19,54 @@ namespace SpeakHub.Service.Services.TweetService
     public class TweetService : ITweetService
     {
         private readonly IUnitOfWork _repository;
-        private readonly ITweetService _tweetService;
-
-        public TweetService(IUnitOfWork unitOfWork, ITweetService tweetService)
+        public TweetService(IUnitOfWork unitOfWork)
         {
             this._repository = unitOfWork;
-            this._tweetService = tweetService;
         }
         public Task<PagedList<TweetViewModel>> GetAllByIdAsync(int id, PaginationParams @params)
         {
-            throw new NotImplementedException();
+            var query = from tweets in _repository.Tweets.GetAll().Where(t => t.Id == id)
+                        select new TweetViewModel
+                        {
+                            Id = tweets.Id,
+                            TweetText = tweets.TweetText
+                        };
+            return PagedList<TweetViewModel>.ToPagedListAsync(query,@params);
         }
-        public async Task<bool> CreateTweetAsync(TweetDto tweetDto)
+        public async Task<bool> CreateTweetAsync(int id)
         {
-            var newTweet = new Tweet
+           var check = await _repository.Tweets.FirstOrDefault(x => x.Id == id);
+            if (check == null)
             {
-                Id = tweetDto.Id,
-                TweetText = tweetDto.TweetText,
-                CreatedAt = DateTime.Now,
-            };
-            _repository.Tweets.Add(newTweet);
-            var result = await _repository.SaveChangesAsync();
-            return result > 0;
+                var entity = new Tweet()
+                {
+                    Id = id,
+                    CreatedAt = DateTime.Now,
+                    LastUpdatedAt = DateTime.Now,
+                    TweetText = string.Empty,
+                };
+                var res = _repository.Tweets.Add(entity);
+                var result = await _repository.SaveChangesAsync();
+                return result > 0;
+            }
+            else throw new StatusCodeException(HttpStatusCode.BadRequest, "This details for Tweet are already exist!");
         }
-        public Task<bool> UpdateTweetAsync(TweetDto tweetDto)
+        public async Task<bool> UpdateTweetAsync(int id,TweetDto tweetDto)
         {
-            throw new NotImplementedException();
+            var editTweet = await _repository.Tweets.FirstOrDefault(x=>x.Id ==id);
+            if (editTweet != null)
+            {
+                _repository.Tweets.TrackingDeteched(editTweet);
+                editTweet.LastUpdatedAt = DateTime.Now;
+                editTweet.EditTweetText = tweetDto.EditTweetText;
+                editTweet.Id = id;
+                _repository.Tweets.Update(editTweet.Id, editTweet);
+                var result = await _repository.SaveChangesAsync();
+                return result > 0;
+            }
+            else throw new StatusCodeException(HttpStatusCode.BadRequest, "Tweet not found");
         }
-        public async Task<bool> DeleteTweetAsync(int id)
+        public async Task<bool> DeleteTweetAsync(int id) 
         {
             if (id <= 0)
             {
