@@ -15,5 +15,6 @@ namespace SpeakHub.Service.Interfaces.Tweets
         public Task<bool> CreateTweetAsync(int id);
         public Task<bool> UpdateTweetAsync(int id,TweetDto tweetDto);
         public Task<bool> DeleteTweetAsync(int id);
+        public Task<List<LikesPerTweetViewModel>> GetAllLikeByTweetAsync(int tweetId);
     }
 }
