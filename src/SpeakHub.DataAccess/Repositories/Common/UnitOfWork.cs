@@ -15,7 +15,7 @@ namespace SpeakHub.DataAccess.Repositories.Common
     public class UnitOfWork : IUnitOfWork
     {
         private readonly AppDbContext _dbContexr;
-
+        public ILikeRepository Likes { get; }
         public IAdminRepository Admins { get; }
         public ITweetRepository Tweets { get; }
         public IUserProfileRepository UserProfiles { get; }
