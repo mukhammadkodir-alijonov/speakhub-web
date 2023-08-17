@@ -1,4 +1,5 @@
 ﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using Microsoft.EntityFrameworkCore;
 using RegistanFerghanaLC.Service.Common.Exceptions;
 using RegistanFerghanaLC.Service.Common.Utils;
 using SpeakHub.DataAccess.Interfaces.Common;
@@ -23,15 +24,18 @@ namespace SpeakHub.Service.Services.TweetService
         {
             this._repository = unitOfWork;
         }
-        public Task<PagedList<TweetViewModel>> GetAllByIdAsync(int id, PaginationParams @params)
+        public async Task<PagedList<TweetViewModel>> GetAllByIdAsync(int id, PaginationParams @params)
         {
-            var query = from tweets in _repository.Tweets.GetAll().Where(t => t.Id == id)
+            var query = from tweets in _repository.Tweets.GetAll().Where(t => t.UserId == id).OrderByDescending(x => x.CreatedAt)
+                        let like = _repository.Likes.GetAll().Where(t => t.TweetId == tweets.Id).ToList()
+                        let likeCount = like.Count()
                         select new TweetViewModel
                         {
                             Id = tweets.Id,
-                            TweetText = tweets.TweetText
+                            TweetText = tweets.TweetText,
+                            likeCount = likeCount
                         };
-            return PagedList<TweetViewModel>.ToPagedListAsync(query,@params);
+            return await PagedList<TweetViewModel>.ToPagedListAsync(query,@params);
         }
         public async Task<bool> CreateTweetAsync(int id)
         {
@@ -83,6 +87,21 @@ namespace SpeakHub.Service.Services.TweetService
             _repository.Tweets.Delete(id); // Pass the ID of the tweet to delete
             var result = await _repository.SaveChangesAsync();
             return result > 0;
+        }
+
+        public async Task<List<LikesPerTweetViewModel>> GetAllLikeByTweetAsync(int tweetId)
+        {
+            var query = await (from like in _repository.Likes.GetAll().Where(x => x.TweetId == tweetId)
+                        join user in _repository.Users.GetAll()
+                        on like.UserId equals user.Id
+                        select new LikesPerTweetViewModel()
+                        {
+                            LikeId = like.Id,
+                            FirstName = user.FirstName,
+                            LastName = user.LastName,
+                            UserName = user.Username
+                        }).ToListAsync();
+            return query;
         }
     }
 }

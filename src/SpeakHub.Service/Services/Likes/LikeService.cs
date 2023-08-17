@@ -37,36 +37,20 @@ namespace SpeakHub.Service.Services.Likes
                 };
 
                 _repository.Likes.Add(newLike);
-                await _repository.SaveChangesAsync();
-                return true;
+                return 0 < await _repository.SaveChangesAsync();
             }
             return false;
         }
 
         public async Task<bool> UnlikeAsync(int likeId,int userId, int tweetId)
         {
-            var unlike = _repository.Likes.GetAll().Where(x=>x.TweetId == tweetId).Count();
-            if (unlike != null)
+            var unlike = _repository.Likes.FirstOrDefault(x => x.TweetId == tweetId && x.UserId == userId);
+            if(unlike != null)
             {
-                _repository.Likes.Delete(likeId);
-                var tweet = await _repository.Tweets.FindByIdAsync(tweetId);
-                return true;
+                _repository.Likes.Delete(unlike.Id);
+                return 0 < await _repository.SaveChangesAsync();
             }
-            return false;
+            else { return false; }
         }
-
-        /*public async Task<bool> UnlikeAsync(int tweetId)
-        {
-            var tweet = await _repository.Tweets.FindByIdAsync(tweetId);
-            //_repository.Tweets.TrackingDeteched(tweet);
-            if (tweet?.LikeCount != null)
-            {
-                tweet.LikeCount--;
-                _repository.Tweets.Update(tweetId,tweet); // Use UpdateAsync here
-                await _repository.SaveChangesAsync();
-                return true; // Unliked
-            }
-            return false;
-        }*/
     }
 }
