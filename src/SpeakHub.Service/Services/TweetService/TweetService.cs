@@ -1,6 +1,7 @@
 ﻿using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.EntityFrameworkCore;
 using RegistanFerghanaLC.Service.Common.Exceptions;
+using RegistanFerghanaLC.Service.Common.Helpers;
 using RegistanFerghanaLC.Service.Common.Utils;
 using SpeakHub.DataAccess.Interfaces.Common;
 using SpeakHub.Domain.Entities.Tweets;
@@ -40,17 +41,17 @@ namespace SpeakHub.Service.Services.TweetService
                         }).ToListAsync();
             return query;
         }
-        public async Task<bool> CreateTweetAsync(int tweetId)
+        public async Task<bool> CreateTweetAsync(int tweetId, TweetDto tweetDto)
         {
            var check = await _repository.Tweets.FirstOrDefault(x => x.Id == tweetId);
             if (check == null)
             {
                 var entity = new Tweet()
                 {
-                    Id = tweetId,
-                    CreatedAt = DateTime.Now,
-                    LastUpdatedAt = DateTime.Now,
-                    TweetText = string.Empty,
+                    Id = tweetDto.Id,
+                    CreatedAt = TimeHelper.GetCurrentServerTime(),
+                    LastUpdatedAt = TimeHelper.GetCurrentServerTime(),
+                    TweetText = tweetDto.TweetText,
                 };
                 var res = _repository.Tweets.Add(entity);
                 var result = await _repository.SaveChangesAsync();
