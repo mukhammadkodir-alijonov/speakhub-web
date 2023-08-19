@@ -11,7 +11,7 @@ namespace SpeakHub.Service.Interfaces.Tweets
 {
     public interface ITweetService
     {
-        public Task<PagedList<TweetViewModel>> GetAllByIdAsync(int id, PaginationParams @params);
+        public Task<List<TweetViewModel>> GetAllByIdAsync(int id);
         public Task<bool> CreateTweetAsync(int id);
         public Task<bool> UpdateTweetAsync(int id,TweetDto tweetDto);
         public Task<bool> DeleteTweetAsync(int id);
