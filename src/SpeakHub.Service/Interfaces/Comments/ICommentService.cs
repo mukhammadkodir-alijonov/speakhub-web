@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpeakHub.Service.Dtos.Tweets;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace SpeakHub.Service.Interfaces.Comments
 {
     public interface ICommentService
     {
-        public Task<bool> CreateCommentAsync(int id);
+        public Task<bool> CreateCommentAsync(int id,TweetDto tweetDto);
     }
 }
