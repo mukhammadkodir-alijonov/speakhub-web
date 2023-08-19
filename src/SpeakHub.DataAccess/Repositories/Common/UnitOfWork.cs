@@ -16,6 +16,7 @@ namespace SpeakHub.DataAccess.Repositories.Common
     {
         private readonly AppDbContext _dbContexr;
         public ILikeRepository Likes { get; }
+        public ICommentRepository Comments { get; }
         public IAdminRepository Admins { get; }
         public ITweetRepository Tweets { get; }
         public IUserProfileRepository UserProfiles { get; }
@@ -24,7 +25,8 @@ namespace SpeakHub.DataAccess.Repositories.Common
         public UnitOfWork(AppDbContext dbContext)
         {
             this._dbContexr = dbContext;
-
+            Likes = new LikeRepository(dbContext);
+            Comments = new CommentRepository(_dbContexr);
             Admins = new AdminRepository(_dbContexr);
             Tweets = new TweetRepository(_dbContexr);
             UserProfiles = new UserProfileRepository(_dbContexr);

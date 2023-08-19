@@ -24,27 +24,30 @@ namespace SpeakHub.Service.Services.TweetService
         {
             this._repository = unitOfWork;
         }
-        public async Task<PagedList<TweetViewModel>> GetAllByIdAsync(int id, PaginationParams @params)
+        public async Task<List<TweetViewModel>> GetAllByIdAsync(int id)
         {
-            var query = from tweets in _repository.Tweets.GetAll().Where(t => t.UserId == id).OrderByDescending(x => x.CreatedAt)
+            var query = await (from tweets in _repository.Tweets.GetAll().Where(t => t.UserId == id).OrderByDescending(x => x.CreatedAt)
                         let like = _repository.Likes.GetAll().Where(t => t.TweetId == tweets.Id).ToList()
+                        let comment = _repository.Comments.GetAll().Where(t=> t.TweetId == tweets.Id).ToList()
                         let likeCount = like.Count()
+                        let commentCount = comment.Count()
                         select new TweetViewModel
                         {
                             Id = tweets.Id,
                             TweetText = tweets.TweetText,
-                            likeCount = likeCount
-                        };
-            return await PagedList<TweetViewModel>.ToPagedListAsync(query,@params);
+                            LikeCount = likeCount,
+                            CommentCount = commentCount
+                        }).ToListAsync();
+            return query;
         }
-        public async Task<bool> CreateTweetAsync(int id)
+        public async Task<bool> CreateTweetAsync(int tweetId)
         {
-           var check = await _repository.Tweets.FirstOrDefault(x => x.Id == id);
+           var check = await _repository.Tweets.FirstOrDefault(x => x.Id == tweetId);
             if (check == null)
             {
                 var entity = new Tweet()
                 {
-                    Id = id,
+                    Id = tweetId,
                     CreatedAt = DateTime.Now,
                     LastUpdatedAt = DateTime.Now,
                     TweetText = string.Empty,
@@ -88,7 +91,6 @@ namespace SpeakHub.Service.Services.TweetService
             var result = await _repository.SaveChangesAsync();
             return result > 0;
         }
-
         public async Task<List<LikesPerTweetViewModel>> GetAllLikeByTweetAsync(int tweetId)
         {
             var query = await (from like in _repository.Likes.GetAll().Where(x => x.TweetId == tweetId)
