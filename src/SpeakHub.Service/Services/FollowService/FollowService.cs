@@ -1,4 +1,5 @@
 ﻿using SpeakHub.DataAccess.Interfaces.Common;
+using SpeakHub.Domain.Entities.Users;
 using SpeakHub.Service.Interfaces.Follows;
 
 namespace SpeakHub.Service.Services.FollowService
@@ -11,9 +12,16 @@ namespace SpeakHub.Service.Services.FollowService
         {
             this._repository = unitOfWork;
         }
-        public Task<bool> FollowAsync(int userId)
+        public async Task<bool> FollowAsync(int userId)
         {
-            throw new NotImplementedException();
+            var follow = await _repository.Follows.FirstOrDefault(x => x.UserId == userId);
+            if (follow == null)
+            {
+                var newfollower = new User
+                {
+
+                };
+            }
         }
 
         public Task<bool> UnFollowAsync(int userId)
