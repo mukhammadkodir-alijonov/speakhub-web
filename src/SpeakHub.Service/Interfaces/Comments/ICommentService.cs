@@ -5,5 +5,6 @@ namespace SpeakHub.Service.Interfaces.Comments
     public interface ICommentService
     {
         public Task<bool> CreateCommentAsync(int id, TweetDto tweetDto);
+        public Task<bool> DeleteCommentAsync(int id);
     }
 }
