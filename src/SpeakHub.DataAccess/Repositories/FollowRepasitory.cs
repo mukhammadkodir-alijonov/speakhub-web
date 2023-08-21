@@ -1,13 +1,13 @@
 ﻿using SpeakHub.DataAccess.DbContexts;
 using SpeakHub.DataAccess.Interfaces;
 using SpeakHub.DataAccess.Repositories.Common;
-using SpeakHub.Domain.Entities.Comments;
+using SpeakHub.Domain.Entities.Followers;
 
 namespace SpeakHub.DataAccess.Repositories
 {
-    public class CommentRepository : GenericRepository<Comment>, ICommentRepository
+    internal class FollowRepasitory : GenericRepository<Follow>, IFollowRepasitory
     {
-        public CommentRepository(AppDbContext appDbContext) : base(appDbContext)
+        public FollowRepasitory(AppDbContext appDbContext) : base(appDbContext)
         {
         }
     }

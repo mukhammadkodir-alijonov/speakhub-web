@@ -1,11 +1,4 @@
-﻿using SpeakHub.Domain.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SpeakHub.Domain.Entities.Users
+﻿namespace SpeakHub.Domain.Entities.Users
 {
     public class UserProfile : Human
     {

@@ -1,11 +1,6 @@
 ﻿using SpeakHub.Domain.Common;
 using SpeakHub.Domain.Entities.Tweets;
 using SpeakHub.Domain.Entities.Users;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpeakHub.Domain.Entities.Comments
 {

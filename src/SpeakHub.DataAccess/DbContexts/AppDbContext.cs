@@ -1,14 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SpeakHub.Domain.Entities.Admins;
 using SpeakHub.Domain.Entities.Comments;
+using SpeakHub.Domain.Entities.Followers;
 using SpeakHub.Domain.Entities.Likes;
 using SpeakHub.Domain.Entities.Tweets;
 using SpeakHub.Domain.Entities.Users;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpeakHub.DataAccess.DbContexts
 {
@@ -26,6 +22,8 @@ namespace SpeakHub.DataAccess.DbContexts
         public virtual DbSet<Tweet> Tweets { get; set; } = default!;
         public virtual DbSet<Like> Likes { get; set; } = default!;
         public virtual DbSet<Comment> Comments { get; set; } = default!;
+        public virtual DbSet<Follow> Follows { get; set; } = default!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
