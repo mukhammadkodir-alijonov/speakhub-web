@@ -12,16 +12,9 @@ namespace SpeakHub.Service.Services.FollowService
         {
             this._repository = unitOfWork;
         }
-        public async Task<bool> FollowAsync(int userId)
+        public Task<bool> FollowAsync(int userId)
         {
-            var follow = await _repository.Follows.FirstOrDefault(x => x.UserId == userId);
-            if (follow == null)
-            {
-                var newfollower = new User
-                {
-
-                };
-            }
+            throw new NotImplementedException();
         }
 
         public Task<bool> UnFollowAsync(int userId)
