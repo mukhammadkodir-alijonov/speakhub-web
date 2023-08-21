@@ -4,12 +4,7 @@ using SpeakHub.DataAccess.Interfaces.Common;
 using SpeakHub.Domain.Entities.Tweets;
 using SpeakHub.Service.Dtos.Tweets;
 using SpeakHub.Service.Interfaces.Comments;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpeakHub.Service.Services.Comments
 {
@@ -20,7 +15,7 @@ namespace SpeakHub.Service.Services.Comments
         {
             this._repository = unitOfWork;
         }
-        public async Task<bool> CreateCommentAsync(int tweetId,TweetDto tweetDto)
+        public async Task<bool> CreateCommentAsync(int tweetId, TweetDto tweetDto)
         {
             var check = await _repository.Tweets.FirstOrDefault(x => x.Id == tweetId);
             if (check == null)

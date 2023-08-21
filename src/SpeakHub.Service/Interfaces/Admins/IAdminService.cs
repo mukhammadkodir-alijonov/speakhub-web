@@ -1,10 +1,6 @@
-﻿using RegistanFerghanaLC.Service.Dtos.Admins;
+﻿using Microsoft.AspNetCore.Http;
+using RegistanFerghanaLC.Service.Dtos.Admins;
 using RegistanFerghanaLC.Service.ViewModels.AdminViewModels;
-using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpeakHub.Service.Interfaces.Admins
 {

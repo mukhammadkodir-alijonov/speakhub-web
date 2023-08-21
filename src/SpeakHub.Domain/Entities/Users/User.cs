@@ -1,10 +1,4 @@
-﻿using SpeakHub.Domain.Common;
-using SpeakHub.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SpeakHub.Domain.Enums;
 
 namespace SpeakHub.Domain.Entities.Users
 {

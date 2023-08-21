@@ -1,20 +1,12 @@
-﻿using DocumentFormat.OpenXml.Office2010.Excel;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using RegistanFerghanaLC.Service.Common.Exceptions;
 using RegistanFerghanaLC.Service.Common.Helpers;
-using RegistanFerghanaLC.Service.Common.Utils;
 using SpeakHub.DataAccess.Interfaces.Common;
 using SpeakHub.Domain.Entities.Tweets;
 using SpeakHub.Service.Dtos.Tweets;
 using SpeakHub.Service.Interfaces.Tweets;
 using SpeakHub.Service.ViewModels.TweetViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpeakHub.Service.Services.TweetService
 {
@@ -28,22 +20,22 @@ namespace SpeakHub.Service.Services.TweetService
         public async Task<List<TweetViewModel>> GetAllByIdAsync(int id)
         {
             var query = await (from tweets in _repository.Tweets.GetAll().Where(t => t.UserId == id).OrderByDescending(x => x.CreatedAt)
-                        let like = _repository.Likes.GetAll().Where(t => t.TweetId == tweets.Id).ToList()
-                        let comment = _repository.Comments.GetAll().Where(t=> t.TweetId == tweets.Id).ToList()
-                        let likeCount = like.Count()
-                        let commentCount = comment.Count()
-                        select new TweetViewModel
-                        {
-                            Id = tweets.Id,
-                            TweetText = tweets.TweetText,
-                            LikeCount = likeCount,
-                            CommentCount = commentCount
-                        }).ToListAsync();
+                               let like = _repository.Likes.GetAll().Where(t => t.TweetId == tweets.Id).ToList()
+                               let comment = _repository.Comments.GetAll().Where(t => t.TweetId == tweets.Id).ToList()
+                               let likeCount = like.Count()
+                               let commentCount = comment.Count()
+                               select new TweetViewModel
+                               {
+                                   Id = tweets.Id,
+                                   TweetText = tweets.TweetText,
+                                   LikeCount = likeCount,
+                                   CommentCount = commentCount
+                               }).ToListAsync();
             return query;
         }
         public async Task<bool> CreateTweetAsync(int tweetId, TweetDto tweetDto)
         {
-           var check = await _repository.Tweets.FirstOrDefault(x => x.Id == tweetId);
+            var check = await _repository.Tweets.FirstOrDefault(x => x.Id == tweetId);
             if (check == null)
             {
                 var entity = new Tweet()
@@ -59,9 +51,9 @@ namespace SpeakHub.Service.Services.TweetService
             }
             else throw new StatusCodeException(HttpStatusCode.BadRequest, "This details for Tweet are already exist!");
         }
-        public async Task<bool> UpdateTweetAsync(int id,TweetDto tweetDto)
+        public async Task<bool> UpdateTweetAsync(int id, TweetDto tweetDto)
         {
-            var editTweet = await _repository.Tweets.FirstOrDefault(x=>x.Id ==id);
+            var editTweet = await _repository.Tweets.FirstOrDefault(x => x.Id == id);
             if (editTweet != null)
             {
                 _repository.Tweets.TrackingDeteched(editTweet);
@@ -74,7 +66,7 @@ namespace SpeakHub.Service.Services.TweetService
             }
             else throw new StatusCodeException(HttpStatusCode.BadRequest, "Tweet not found");
         }
-        public async Task<bool> DeleteTweetAsync(int id) 
+        public async Task<bool> DeleteTweetAsync(int id)
         {
             if (id <= 0)
             {
@@ -85,7 +77,7 @@ namespace SpeakHub.Service.Services.TweetService
 
             if (tweetToDelete == null)
             {
-                throw new StatusCodeException(System.Net.HttpStatusCode.NotFound, "Tweet not found");
+                throw new StatusCodeException(HttpStatusCode.NotFound, "Tweet not found");
             }
 
             _repository.Tweets.Delete(id); // Pass the ID of the tweet to delete
@@ -94,16 +86,16 @@ namespace SpeakHub.Service.Services.TweetService
         }
         public async Task<List<LikesPerTweetViewModel>> GetAllLikeByTweetAsync(int tweetId)
         {
-            var query = await (from like in _repository.Likes.GetAll().Where(x => x.TweetId == tweetId)
-                        join user in _repository.Users.GetAll()
-                        on like.UserId equals user.Id
-                        select new LikesPerTweetViewModel()
-                        {
-                            LikeId = like.Id,
-                            FirstName = user.FirstName,
-                            LastName = user.LastName,
-                            UserName = user.Username
-                        }).ToListAsync();
+            var query = await (from like in _repository.Likes.GetAll().Where(x => x.TweetId == tweetId).OrderByDescending(x => x.CreatedAt)
+                               join user in _repository.Users.GetAll()
+                               on like.UserId equals user.Id
+                               select new LikesPerTweetViewModel()
+                               {
+                                   LikeId = like.Id,
+                                   FirstName = user.FirstName,
+                                   LastName = user.LastName,
+                                   UserName = user.Username
+                               }).ToListAsync();
             return query;
         }
     }
