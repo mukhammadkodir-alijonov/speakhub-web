@@ -8,7 +8,5 @@ namespace SpeakHub.Domain.Entities.Users
         public string PasswordHash { get; set; } = string.Empty;
         public string Salt { get; set; } = string.Empty;
         public StatusType Status { get; set; } = StatusType.Active;
-        public DateTime RegistrationDate { get; set; }
-        public DateTime LastLogin { get; set; }
     }
 }
