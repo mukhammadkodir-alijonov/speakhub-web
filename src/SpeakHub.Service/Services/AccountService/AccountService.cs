@@ -56,7 +56,7 @@ public class AccountService : IAccountService
                 var hasherResult = PasswordHasher.Verify(accountLoginDto.Password, user.Salt, user.PasswordHash);
                 if (hasherResult)
                 {
-                    string token = _authService.GenerateToken(user, "student");
+                    string token = _authService.GenerateToken(user, "user");
                     return token;
                 }
                 else throw new NotFoundException(nameof(accountLoginDto.Password), "Incorrect password!");

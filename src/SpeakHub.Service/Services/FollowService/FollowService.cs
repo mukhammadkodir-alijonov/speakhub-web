@@ -1,5 +1,4 @@
 ﻿using SpeakHub.DataAccess.Interfaces.Common;
-using SpeakHub.Domain.Entities.Users;
 using SpeakHub.Service.Interfaces.Follows;
 
 namespace SpeakHub.Service.Services.FollowService
