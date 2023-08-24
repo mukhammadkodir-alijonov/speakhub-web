@@ -33,7 +33,12 @@ namespace SpeakHub.Service.Services.UserService
             var query = _unitOfWork.Users.GetAll().OrderBy(x => x.Id)
                 .Select(x => _mapper.Map<UserViewModel>(x));
             return await PagedList<UserViewModel>.ToPagedListAsync(query, @params);
-
+        }
+        public async Task<PagedList<UserViewModel>> GetAllUsernameAysnc(PaginationParams @params)
+        {
+            var query = _unitOfWork.Users.GetAll().OrderBy(x => x.Username)
+                .Select(x => _mapper.Map<UserViewModel>(x));
+            return await PagedList<UserViewModel>.ToPagedListAsync(query, @params);
         }
         public async Task<UserViewModel> GetAsync(int id)
         {
@@ -92,5 +97,6 @@ namespace SpeakHub.Service.Services.UserService
             }
             else throw new StatusCodeException(HttpStatusCode.BadRequest, "Not allowed");
         }
+
     }
 }

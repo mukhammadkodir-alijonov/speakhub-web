@@ -7,6 +7,7 @@ namespace SpeakHub.Service.Interfaces.Users
     public interface IUserService
     {
         public Task<PagedList<UserViewModel>> GetAllAysnc(PaginationParams @params);
+        public Task<PagedList<UserViewModel>> GetAllUsernameAysnc(PaginationParams @params);
 
         public Task<UserViewModel> GetAsync(int id);
 
