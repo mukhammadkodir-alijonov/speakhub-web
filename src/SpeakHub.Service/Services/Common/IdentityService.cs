@@ -10,12 +10,12 @@ public class IdentityService : IIdentityService
     {
         this._accessor = accessor;
     }
-    public long? Id
+    public int? Id
     {
         get
         {
             var res = _accessor.HttpContext!.User.FindFirst("Id");
-            return res is not null ? long.Parse(res.Value) : null;
+            return res is not null ? int.Parse(res.Value) : null;
         }
     }
     public string FirstName

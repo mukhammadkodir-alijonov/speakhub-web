@@ -7,13 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Configurations\**" />
     <Compile Remove="Middlewares\**" />
-    <Content Remove="Configurations\**" />
     <Content Remove="Middlewares\**" />
-    <EmbeddedResource Remove="Configurations\**" />
     <EmbeddedResource Remove="Middlewares\**" />
-    <None Remove="Configurations\**" />
     <None Remove="Middlewares\**" />
   </ItemGroup>
 

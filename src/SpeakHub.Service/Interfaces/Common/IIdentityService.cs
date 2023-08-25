@@ -2,7 +2,7 @@
 {
     public interface IIdentityService
     {
-        public long? Id { get; }
+        public int? Id { get; }
 
         public string FirstName { get; }
 
