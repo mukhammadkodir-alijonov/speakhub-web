@@ -27,7 +27,6 @@ namespace SpeakHub.Service.Services.UserService
             this._imageService = imageService;
             this._appDbContext = appDbContext;
         }
-
         public async Task<PagedList<UserViewModel>> GetAllAysnc(PaginationParams @params)
         {
             var query = _unitOfWork.Users.GetAll().OrderBy(x => x.Id)
