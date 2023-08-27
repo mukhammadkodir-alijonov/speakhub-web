@@ -1,36 +1,63 @@
-namespace SpeakHub.Web
+using RegistanFerghanaLC.Web.Configuration.LayerConfigurations;
+using SpeakHub.Web.Configurations.LayerConfigurations;
+using Microsoft.OpenApi.Models;
+using RegistanFerghanaLC.Web.Midllewares;
+using System.Net;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllersWithViews();
+builder.Services.AddHttpContextAccessor();
+builder.Services.ConfigureDataAccess(builder.Configuration);
+builder.Services.AddWeb(builder.Configuration);
+builder.Services.AddService();
+
+builder.Services.AddSwaggerGen(options =>
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
+    options.SwaggerDoc("v2", new OpenApiInfo { Title = "SeakHubAPI.swagger", Version = "v2" });
+});
 
-            // Add services to the container.
-            builder.Services.AddControllersWithViews();
+var app = builder.Build();
 
-            var app = builder.Build();
-
-            // Configure the HTTP request pipeline.
-            if (!app.Environment.IsDevelopment())
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
-
-            app.Run();
-        }
-    }
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
 }
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v2/swagger.json", "SeakHubAPI.swagger");
+});
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "SeakHub API V1");
+    c.RoutePrefix = "area/swagger";
+});
+app.UseMiddleware<TokenRedirectMiddleware>();
+
+app.UseStatusCodePages(async context =>
+{
+    if(context.HttpContext.Response.StatusCode == (int)HttpStatusCode.Unauthorized)
+    {
+        context.HttpContext.Response.Redirect("login");
+    }
+});
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapAreaControllerRoute(
+    name: "users",
+    areaName: "users",
+    pattern: "users/{controller=Home}/{action=Index}/{id?}");
+
+app.Run();
