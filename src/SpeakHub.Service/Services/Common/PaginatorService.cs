@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using RegistanFerghanaLC.Service.Common.Utils;
-using RegistanFerghanaLC.Service.Interfaces.Common;
+using SpeakHub.Service.Common.Utils;
+using SpeakHub.Service.Interfaces.Common;
 
-namespace RegistanFerghanaLC.Service.Services.Common
+namespace SpeakHub.Service.Services.Common
 {
     public class PaginatorService : IPaginatorService
     {

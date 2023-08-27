@@ -1,4 +1,4 @@
-﻿using RegistanFerghanaLC.Service.Common.Utils;
+﻿using SpeakHub.Service.Common.Utils;
 using SpeakHub.Service.Dtos.Users;
 using SpeakHub.Service.ViewModels.UserViewModels;
 

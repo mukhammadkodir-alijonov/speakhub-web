@@ -1,4 +1,4 @@
-﻿namespace RegistanFerghanaLC.Service.Common.Utils;
+﻿namespace SpeakHub.Service.Common.Utils;
 
 public class PaginationParams
 {

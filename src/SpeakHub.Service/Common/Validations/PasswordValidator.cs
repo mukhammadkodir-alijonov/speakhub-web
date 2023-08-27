@@ -1,4 +1,4 @@
-﻿namespace RegistanFerghanaLC.Service.Common.Validations;
+﻿namespace SpeakHub.Service.Common.Validations;
 
 public class PasswordValidator
 {

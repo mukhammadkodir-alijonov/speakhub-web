@@ -1,4 +1,4 @@
-﻿namespace RegistanFerghanaLC.Web.Configuration.LayerConfigurations;
+﻿namespace SpeakHub.Configuration.LayerConfigurations;
 public static class WebConfiguration
 {
     public static void AddWeb(this IServiceCollection services, IConfiguration configuration)

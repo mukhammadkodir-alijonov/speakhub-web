@@ -11,7 +11,7 @@ namespace SpeakHub.Domain.Entities.Admins
         public string PasswordHash { get; set; } = string.Empty;
 
         public string Salt { get; set; } = string.Empty;
-        public long TweetId { get; set; }
+        public int TweetId { get; set; }
         public virtual Tweet Tweet { get; set; } = default!;
     }
 }

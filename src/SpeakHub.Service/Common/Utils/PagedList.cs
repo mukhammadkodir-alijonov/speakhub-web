@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace RegistanFerghanaLC.Service.Common.Utils
+namespace SpeakHub.Service.Common.Utils
 {
     public class PagedList<T> : List<T>
     {

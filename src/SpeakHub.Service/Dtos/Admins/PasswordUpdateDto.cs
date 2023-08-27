@@ -1,7 +1,7 @@
-﻿using RegistanFerghanaLC.Service.Common.Attributes;
+﻿using SpeakHub.Service.Common.Attributes;
 using System.ComponentModel.DataAnnotations;
 
-namespace RegistanFerghanaLC.Service.Dtos.Admins
+namespace SpeakHub.Service.Dtos.Admins
 {
     public class PasswordUpdateDto
     {
