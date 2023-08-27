@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace SpeakHub.Web.Exceptions
+namespace SpeakHub.Exceptions
 {
     public class StatusCodeException : Exception
     {

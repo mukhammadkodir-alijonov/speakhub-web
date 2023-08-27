@@ -4,7 +4,7 @@ using SpeakHub.Domain.Common;
 using SpeakHub.Domain.Entities.Admins;
 using System.ComponentModel.DataAnnotations;
 
-namespace RegistanFerghanaLC.Service.Dtos.Admins
+namespace SpeakHub.Service.Dtos.Admins
 {
     public class AdminUpdateDto : BaseEntity
     {

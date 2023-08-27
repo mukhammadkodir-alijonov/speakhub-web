@@ -1,4 +1,4 @@
-﻿namespace RegistanFerghanaLC.Service.Interfaces.Common
+﻿namespace SpeakHub.Service.Interfaces.Common
 {
     public interface IPaginatorService
     {

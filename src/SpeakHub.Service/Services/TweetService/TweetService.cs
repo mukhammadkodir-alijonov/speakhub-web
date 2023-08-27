@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RegistanFerghanaLC.Service.Common.Exceptions;
-using RegistanFerghanaLC.Service.Common.Helpers;
+using SpeakHub.Service.Common.Exceptions;
+using SpeakHub.Service.Common.Helpers;
 using SpeakHub.DataAccess.Interfaces.Common;
 using SpeakHub.Domain.Entities.Tweets;
 using SpeakHub.Service.Dtos.Tweets;

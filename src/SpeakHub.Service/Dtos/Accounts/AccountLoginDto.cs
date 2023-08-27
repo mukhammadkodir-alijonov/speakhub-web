@@ -1,4 +1,4 @@
-﻿using RegistanFerghanaLC.Service.Common.Attributes;
+﻿using SpeakHub.Service.Common.Attributes;
 using System.ComponentModel.DataAnnotations;
 
 namespace SpeakHub.Service.Dtos.Accounts

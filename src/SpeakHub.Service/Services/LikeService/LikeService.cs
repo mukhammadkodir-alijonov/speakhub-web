@@ -1,4 +1,4 @@
-﻿using RegistanFerghanaLC.Service.Common.Helpers;
+﻿using SpeakHub.Service.Common.Helpers;
 using SpeakHub.DataAccess.Interfaces.Common;
 using SpeakHub.Domain.Entities.Likes;
 using SpeakHub.Service.Interfaces.Likes;

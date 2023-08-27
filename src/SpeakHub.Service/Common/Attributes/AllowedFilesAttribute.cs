@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
-namespace RegistanFerghanaLC.Service.Common.Attributes
+namespace SpeakHub.Service.Common.Attributes
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class AllowedFilesAttribute : ValidationAttribute

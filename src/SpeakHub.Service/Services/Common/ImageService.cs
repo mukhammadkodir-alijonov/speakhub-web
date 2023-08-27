@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using RegistanFerghanaLC.Service.Common.Helpers;
-using RegistanFerghanaLC.Service.Interfaces.Common;
+using SpeakHub.Service.Common.Helpers;
+using SpeakHub.Service.Interfaces.Common;
 
-namespace RegistanFerghanaLC.Service.Services.Common;
+namespace SpeakHub.Service.Services.Common;
 
 public class ImageService : IImageService
 {

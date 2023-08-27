@@ -1,4 +1,4 @@
-﻿namespace RegistanFerghanaLC.Web.Midllewares;
+﻿namespace SpeakHub.Midllewares;
 public class TokenRedirectMiddleware
 {
     private readonly RequestDelegate _next;

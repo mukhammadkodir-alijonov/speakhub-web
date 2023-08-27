@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace RegistanFerghanaLC.Service.Common.Exceptions
+namespace SpeakHub.Service.Common.Exceptions
 {
     public class StatusCodeException : Exception
     {

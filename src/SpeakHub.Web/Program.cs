@@ -1,7 +1,7 @@
-using RegistanFerghanaLC.Web.Configuration.LayerConfigurations;
-using SpeakHub.Web.Configurations.LayerConfigurations;
 using Microsoft.OpenApi.Models;
-using RegistanFerghanaLC.Web.Midllewares;
+using SpeakHub.Configuration.LayerConfigurations;
+using SpeakHub.Configurations.LayerConfigurations;
+using SpeakHub.Midllewares;
 using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);

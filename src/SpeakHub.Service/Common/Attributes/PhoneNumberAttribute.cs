@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
-namespace RegistanFerghanaLC.Service.Common.Attributes;
+namespace SpeakHub.Service.Common.Attributes;
 [AttributeUsage(AttributeTargets.Property)]
 public class PhoneNumberAttribute : ValidationAttribute
 {
