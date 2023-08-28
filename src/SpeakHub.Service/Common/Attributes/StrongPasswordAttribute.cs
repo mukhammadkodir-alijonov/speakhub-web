@@ -1,7 +1,7 @@
-﻿using RegistanFerghanaLC.Service.Common.Validations;
+﻿using SpeakHub.Service.Common.Validations;
 using System.ComponentModel.DataAnnotations;
 
-namespace RegistanFerghanaLC.Service.Common.Attributes;
+namespace SpeakHub.Service.Common.Attributes;
 public class StrongPasswordAttribute : ValidationAttribute
 {
     protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)

@@ -1,8 +1,8 @@
-﻿namespace RegistanFerghanaLC.Service.ViewModels
+﻿namespace SpeakHub.Service.ViewModels
 {
     public class AccountBaseViewModel
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         public string FirstName { get; set; } = String.Empty;
 

@@ -2,7 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace RegistanFerghanaLC.Web.Configuration;
+namespace SpeakHub.Configuration;
 public static class JwtConfiguration
 {
     public static void ConfigureAuth(this IServiceCollection services, IConfiguration configuration)

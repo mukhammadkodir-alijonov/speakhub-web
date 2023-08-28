@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using RegistanFerghanaLC.Service.Interfaces.Common;
+using SpeakHub.Service.Interfaces.Common;
 using SpeakHub.Domain.Entities;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace RegistanFerghanaLC.Service.Services.Common;
+namespace SpeakHub.Service.Services.Common;
 
 public class AuthService : IAuthService
 {

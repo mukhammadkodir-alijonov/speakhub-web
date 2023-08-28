@@ -1,7 +1,7 @@
 ﻿using SpeakHub.Domain.Entities.Admins;
 using SpeakHub.Domain.Enums;
 
-namespace RegistanFerghanaLC.Service.ViewModels.AdminViewModels
+namespace SpeakHub.Service.ViewModels.AdminViewModels
 {
     public class AdminViewModel
     {

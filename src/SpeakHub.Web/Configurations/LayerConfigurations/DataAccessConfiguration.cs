@@ -3,7 +3,7 @@ using SpeakHub.DataAccess.DbContexts;
 using SpeakHub.DataAccess.Interfaces.Common;
 using SpeakHub.DataAccess.Repositories.Common;
 
-namespace RegistanFerghanaLC.Web.Configuration.LayerConfigurations
+namespace SpeakHub.Configuration.LayerConfigurations
 {
     public static class DataAccessConfiguration
     {

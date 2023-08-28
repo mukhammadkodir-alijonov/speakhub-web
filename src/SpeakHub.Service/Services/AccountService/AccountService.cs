@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using RegistanFerghanaLC.Service.Common.Exceptions;
-using RegistanFerghanaLC.Service.Common.Helpers;
-using RegistanFerghanaLC.Service.Interfaces.Common;
+using SpeakHub.Service.Common.Exceptions;
+using SpeakHub.Service.Common.Helpers;
+using SpeakHub.Service.Interfaces.Common;
 using SpeakHub.DataAccess.Interfaces.Common;
 using SpeakHub.Domain.Entities.Admins;
 using SpeakHub.Domain.Enums;
@@ -10,20 +10,17 @@ using SpeakHub.Service.Dtos.Accounts;
 using SpeakHub.Service.Dtos.Admins;
 using SpeakHub.Service.Interfaces.Accounts;
 
-namespace RegistanFerghanaLC.Service.Services.AccountService;
+namespace SpeakHub.Service.Services.AccountService;
 public class AccountService : IAccountService
 {
     private readonly IUnitOfWork _repository;
     private readonly IAuthService _authService;
     private readonly IMapper _mapper;
-    private readonly IImageService _imageService;
-
-    public AccountService(IUnitOfWork unitOfWork, IAuthService authService, IMapper mapper, IImageService imageService)
+    public AccountService(IUnitOfWork unitOfWork, IAuthService authService, IMapper mapper)
     {
         this._repository = unitOfWork;
         this._authService = authService;
         this._mapper = mapper;
-        this._imageService = imageService;
     }
 
     public async Task<bool> AdminRegisterAsync(AdminRegisterDto adminRegisterDto)

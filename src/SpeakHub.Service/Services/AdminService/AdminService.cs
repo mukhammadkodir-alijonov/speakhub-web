@@ -1,16 +1,16 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using RegistanFerghanaLC.Service.Common.Exceptions;
-using RegistanFerghanaLC.Service.Common.Helpers;
-using RegistanFerghanaLC.Service.Dtos.Admins;
-using RegistanFerghanaLC.Service.Interfaces.Common;
-using RegistanFerghanaLC.Service.ViewModels.AdminViewModels;
+using SpeakHub.Service.Common.Exceptions;
+using SpeakHub.Service.Common.Helpers;
+using SpeakHub.Service.Dtos.Admins;
+using SpeakHub.Service.Interfaces.Common;
+using SpeakHub.Service.ViewModels.AdminViewModels;
 using SpeakHub.DataAccess.Interfaces.Common;
 using SpeakHub.Service.Common.Security;
 using SpeakHub.Service.Interfaces.Admins;
 using SpeakHub.Service.Interfaces.Files;
 
-namespace RegistanFerghanaLC.Service.Services.AdminService
+namespace SpeakHub.Service.Services.AdminService
 {
     public class AdminService : IAdminService
     {

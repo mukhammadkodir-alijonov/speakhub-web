@@ -1,6 +1,6 @@
 ﻿using SpeakHub.Domain.Constants;
 
-namespace RegistanFerghanaLC.Service.Common.Helpers
+namespace SpeakHub.Service.Common.Helpers
 {
     public class TimeHelper
     {

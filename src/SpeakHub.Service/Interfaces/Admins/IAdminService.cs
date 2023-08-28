@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
-using RegistanFerghanaLC.Service.Dtos.Admins;
-using RegistanFerghanaLC.Service.ViewModels.AdminViewModels;
+using SpeakHub.Service.Dtos.Admins;
+using SpeakHub.Service.ViewModels.AdminViewModels;
 
 namespace SpeakHub.Service.Interfaces.Admins
 {
