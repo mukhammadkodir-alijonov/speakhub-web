@@ -42,7 +42,7 @@ app.UseMiddleware<TokenRedirectMiddleware>();
 
 app.UseStatusCodePages(async context =>
 {
-    if(context.HttpContext.Response.StatusCode == (int)HttpStatusCode.Unauthorized)
+    if (context.HttpContext.Response.StatusCode == (int)HttpStatusCode.Unauthorized)
     {
         context.HttpContext.Response.Redirect("login");
     }

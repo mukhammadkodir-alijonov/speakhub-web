@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SpeakHub.Models;
 using SpeakHub.Service.Common.Exceptions;
-using SpeakHub.Web.Models;
 
 namespace SpeakHub.Midllewares
 {

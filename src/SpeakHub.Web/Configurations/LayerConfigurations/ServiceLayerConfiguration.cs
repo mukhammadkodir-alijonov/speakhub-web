@@ -1,12 +1,14 @@
-﻿using SpeakHub.Service.Interfaces.Common;
-using SpeakHub.Service.Services.AdminService;
-using SpeakHub.DataAccess.Interfaces.Common;
+﻿using SpeakHub.DataAccess.Interfaces.Common;
 using SpeakHub.DataAccess.Repositories.Common;
 using SpeakHub.Service.Interfaces.Accounts;
 using SpeakHub.Service.Interfaces.Admins;
-using SpeakHub.Web.Configurations;
-using SpeakHub.Service.Services.Common;
+using SpeakHub.Service.Interfaces.Common;
+using SpeakHub.Service.Interfaces.Files;
 using SpeakHub.Service.Services.AccountService;
+using SpeakHub.Service.Services.AdminService;
+using SpeakHub.Service.Services.Common;
+using SpeakHub.Service.Services.Files;
+using SpeakHub.Web.Configurations;
 
 namespace SpeakHub.Configurations.LayerConfigurations
 {
@@ -16,6 +18,7 @@ namespace SpeakHub.Configurations.LayerConfigurations
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IFileService, FileService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IImageService, ImageService>();
             services.AddScoped<IAdminService, AdminService>();

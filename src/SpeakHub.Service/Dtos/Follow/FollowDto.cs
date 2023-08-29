@@ -1,6 +1,6 @@
-﻿namespace SpeakHub.Service.Dtos
+﻿namespace SpeakHub.Service.Dtos.Follow
 {
-    public class FollowDTO
+    public class FollowDto
     {
         public int Id { get; set; }
         public string FullName { get; set; }

@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using SpeakHub.Service.Common.Exceptions;
-using SpeakHub.Service.Common.Helpers;
-using SpeakHub.Service.Common.Utils;
-using SpeakHub.Service.Interfaces.Common;
 using SpeakHub.DataAccess.DbContexts;
 using SpeakHub.DataAccess.Interfaces.Common;
 using SpeakHub.Domain.Entities.Users;
+using SpeakHub.Service.Common.Exceptions;
+using SpeakHub.Service.Common.Helpers;
+using SpeakHub.Service.Common.Utils;
 using SpeakHub.Service.Dtos.Users;
+using SpeakHub.Service.Interfaces.Common;
 using SpeakHub.Service.Interfaces.Users;
 using SpeakHub.Service.ViewModels.UserViewModels;
 using System.Net;
