@@ -2,7 +2,7 @@
 {
     public interface IFollowService
     {
-        public Task<bool> FollowAsync(int userId);
-        public Task<bool> UnFollowAsync(int userId);
+        public Task<bool> FollowAsync(int _userId1, int _userId2);
+        public Task<bool> UnFollowAsync(int _userId1, int _userId2);
     }
 }

@@ -11,14 +11,20 @@ namespace SpeakHub.Service.Services.FollowService
         {
             this._repository = unitOfWork;
         }
-        public Task<bool> FollowAsync(int userId)
+        public async Task<bool> FollowAsync(int _userId1, int _userId2)
         {
-            throw new NotImplementedException();
+            var isUpdateDbOk = await _repository.Follows.FollowAsync(_userId1, _userId2);
+            await _repository.SaveChangesAsync();
+
+            return isUpdateDbOk;
         }
 
-        public Task<bool> UnFollowAsync(int userId)
+        public async Task<bool> UnFollowAsync(int _userId1, int _userId2)
         {
-            throw new NotImplementedException();
+            var isUpdateDbOk = await _repository.Follows.UnfollowAsync(_userId1, _userId2);
+            await _repository.SaveChangesAsync();
+
+            return isUpdateDbOk;
         }
     }
 }

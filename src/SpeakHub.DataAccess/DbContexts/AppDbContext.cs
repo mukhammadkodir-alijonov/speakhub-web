@@ -22,7 +22,8 @@ namespace SpeakHub.DataAccess.DbContexts
         public virtual DbSet<Tweet> Tweets { get; set; } = default!;
         public virtual DbSet<Like> Likes { get; set; } = default!;
         public virtual DbSet<Comment> Comments { get; set; } = default!;
-        public virtual DbSet<Follow> Follows { get; set; } = default!;
+        public virtual DbSet<Follower> Follows { get; set; } = default!;
+        public virtual DbSet<Following> Followings { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

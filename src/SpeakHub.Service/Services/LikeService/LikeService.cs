@@ -1,6 +1,6 @@
-﻿using SpeakHub.Service.Common.Helpers;
-using SpeakHub.DataAccess.Interfaces.Common;
+﻿using SpeakHub.DataAccess.Interfaces.Common;
 using SpeakHub.Domain.Entities.Likes;
+using SpeakHub.Service.Common.Helpers;
 using SpeakHub.Service.Interfaces.Likes;
 
 namespace SpeakHub.Service.Services.Likes

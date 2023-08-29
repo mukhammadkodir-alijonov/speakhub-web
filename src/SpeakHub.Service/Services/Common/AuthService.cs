@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using SpeakHub.Service.Interfaces.Common;
 using SpeakHub.Domain.Entities;
+using SpeakHub.Service.Interfaces.Common;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
