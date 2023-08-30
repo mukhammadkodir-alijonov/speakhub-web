@@ -21,9 +21,6 @@ namespace SpeakHub.Service.Dtos.Admins
         public string PhoneNumber { get; set; } = String.Empty;
         public DateTime BirthDate { get; set; }
 
-        [Required(ErrorMessage = "Address Required")]
-        public string Address { get; set; } = String.Empty;
-
         public static implicit operator Admin(AdminUpdateDto dto)
         {
             return new Admin()
