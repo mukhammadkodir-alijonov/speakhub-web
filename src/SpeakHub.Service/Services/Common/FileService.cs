@@ -4,7 +4,7 @@ using SpeakHub.Service.Common.Helpers;
 using SpeakHub.Service.Dtos.Files;
 using SpeakHub.Service.Interfaces.Files;
 
-namespace SpeakHub.Service.Services.Files
+namespace SpeakHub.Service.Services.Common
 {
     public class FileService : IFileService
     {

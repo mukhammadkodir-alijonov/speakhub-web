@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SpeakHub.Exceptions;
-using SpeakHub.Service.Common.Utils;
 using SpeakHub.Service.Dtos.Accounts;
 using SpeakHub.Service.Dtos.Admins;
 using SpeakHub.Service.Dtos.Users;
@@ -9,8 +7,9 @@ using SpeakHub.Service.Interfaces.Common;
 using SpeakHub.Service.Interfaces.Users;
 using SpeakHub.Service.ViewModels.UserViewModels;
 
-namespace YourApplication.Controllers
+namespace SpeakHub.Controllers
 {
+    [Route("users")]
     public class UserController : Controller
     {
         private readonly IUserService _userService;
@@ -27,7 +26,7 @@ namespace YourApplication.Controllers
         {
             return View();
         }
-        [HttpGet]
+        [HttpGet("userId")]
         public async Task<ViewResult> Get(int userId)
         {
             var user = await _userService.GetAsync(userId);
@@ -43,7 +42,7 @@ namespace YourApplication.Controllers
             };
             return View("../Users/Index", user);
         }
-        [HttpGet]
+        [HttpGet("update")]
         public async Task<ViewResult> Update()
         {
             var userId = _identityService.Id!.Value;
@@ -58,7 +57,7 @@ namespace YourApplication.Controllers
             };
             return View("../Users/Update", userUpdate);
         }
-        [HttpPost]
+        [HttpPost("update")]
         public async Task<IActionResult> UpdateAsync([FromForm] UserUpdateDto userUpdateDto, int userId)
         {
             if (ModelState.IsValid)
@@ -70,13 +69,13 @@ namespace YourApplication.Controllers
             else return RedirectToAction("Update", "Users", new { area = "" });
         }
         // Update when you know the password of views that have not been recorded -->
-        [HttpGet]
+        [HttpGet("updatePassword")]
         public async Task<ViewResult> UpdatePasswordAsync()
         {
             return View("UpdatePassword");
         }
-        [HttpPost]
-        public async Task<IActionResult> UpdatePassword(PasswordUpdateDto passwordUpdateDto)
+        [HttpPost("updatePassword")]
+        public async Task<IActionResult> UpdatePasswordAsync(PasswordUpdateDto passwordUpdateDto)
         {
             if (ModelState.IsValid)
             {
@@ -87,12 +86,12 @@ namespace YourApplication.Controllers
             else return await UpdatePasswordAsync();
         }
         // Send code to email without views
-        [HttpGet]
+        [HttpGet("sendEmail")]
         public async Task<ViewResult> SendEmailAsync()
         {
             return View();
         }
-        [HttpPost]
+        [HttpPost("sendEmail")]
         public async Task<IActionResult> SendEmailAsync(SendToEmailDto sendToEmailDto)
         {
             if (ModelState.IsValid)
@@ -102,12 +101,12 @@ namespace YourApplication.Controllers
             }
             else return await SendEmailAsync();
         }
-        [HttpGet]
+        [HttpGet("forgetPassword")]
         public async Task<ViewResult> ForgetPasswordAsync()
         {
             return View();
         }
-        [HttpPost]
+        [HttpPost("forgetPassword")]
         public async Task<IActionResult> ForgetPasswordAsync(UserResetPasswordDto resetPasswordDto)
         {
             if (ModelState.IsValid)
@@ -119,12 +118,12 @@ namespace YourApplication.Controllers
             }
             else return await ForgetPasswordAsync();
         }
-        [HttpGet()]
+        [HttpGet("deleteUser")]
         public async Task<ViewResult> UserDeleteAsync()
         {
             return View();
         }
-        [HttpPost]
+        [HttpPost("deleteUser")]
         public async Task<IActionResult> UserDeleteAsync(UserDeleteDto userDeleteDto)
         {
             if (ModelState.IsValid)

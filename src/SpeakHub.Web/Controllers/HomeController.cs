@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SpeakHub.Web.Models;
 using System.Diagnostics;
 
-namespace RegistanFerghanaLC.Web.Controllers
+namespace SpeakHub.Web.Controllers
 {
     [Authorize]
     public class HomeController : Controller
