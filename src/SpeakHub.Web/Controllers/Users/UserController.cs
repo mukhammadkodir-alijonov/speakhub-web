@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using Microsoft.AspNetCore.Mvc;
+using SpeakHub.Service.Common.Exceptions;
+using SpeakHub.Service.Common.Utils;
 using SpeakHub.Service.Dtos.Accounts;
 using SpeakHub.Service.Dtos.Admins;
 using SpeakHub.Service.Dtos.Users;
@@ -26,6 +29,47 @@ namespace SpeakHub.Controllers
         {
             return View();
         }
+        [HttpGet("Username")]
+        public async Task<IActionResult> GetAllUsernameAsync([FromQuery] PaginationParams paginationParams)
+        {
+            try
+            {
+                var users = await _userService.GetAllUsernameAysnc(paginationParams);
+                return Ok(users);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+
+        }
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAllAsync([FromQuery] PaginationParams paginationParams)
+        {
+            try
+            {
+                var users = await _userService.GetAllAysnc(paginationParams);
+                return Ok(users);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            
+        }
+        [HttpGet("{email}")]
+        public async Task<IActionResult> GetUserByEmailAsync(string email)
+        {
+            try
+            {
+                var user = await _userService.GetEmailAsync(email.Trim());
+                return Ok(user);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
         [HttpGet("userId")]
         public async Task<ViewResult> Get(int userId)
         {
@@ -40,7 +84,7 @@ namespace SpeakHub.Controllers
                 Email = user.Email,
                 Image = user.Image
             };
-            return View("../Users/Index", user);
+            return View("../Users/Index", userView);
         }
         [HttpGet("update")]
         public async Task<ViewResult> Update()
