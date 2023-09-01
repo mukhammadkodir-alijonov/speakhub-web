@@ -95,6 +95,5 @@ namespace SpeakHub.Service.Services.UserService
             }
             else throw new StatusCodeException(HttpStatusCode.BadRequest, "Not allowed");
         }
-
     }
 }

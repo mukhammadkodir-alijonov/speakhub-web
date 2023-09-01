@@ -20,7 +20,7 @@ namespace SpeakHub.Web.Controllers.Comments
         }
         [HttpPost("create")]
         [Authorize]
-        public async Task<IActionResult> Create(int tweetId, TweetDto tweetDto)
+        public async Task<IActionResult> CreateAsync(int tweetId, TweetDto tweetDto)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace SpeakHub.Web.Controllers.Comments
 
         [HttpPost("delete")]
         [Authorize]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
             try
             {
