@@ -61,7 +61,7 @@ namespace SpeakHub.Web.Controllers.Admins
         #endregion
 
         #region Update
-        [HttpGet("update")]
+        [HttpGet("update(GetByIdAsync)")]
         public async Task<ViewResult> UpdateAsync(int adminId)
         {
             var admin = await _adminService.GetByIdAsync(adminId);
@@ -92,7 +92,7 @@ namespace SpeakHub.Web.Controllers.Admins
             return await UpdateAsync(adminId);
         }
 
-        [HttpPost("passwordUpdate")]
+        [HttpPost("updatePassword")]
         public async Task<IActionResult> PasswordUpdateAsync(int id, PasswordUpdateDto dto)
         {
             if (ModelState.IsValid)
@@ -114,7 +114,7 @@ namespace SpeakHub.Web.Controllers.Admins
             else return View("admins");
         }
 
-        [HttpPost("delete")]
+        [HttpPost("deleteAdmin")]
         public async Task<IActionResult> DeleteAdminAsync(int adminId)
         {
             var admin = await _adminService.DeleteAsync(adminId);

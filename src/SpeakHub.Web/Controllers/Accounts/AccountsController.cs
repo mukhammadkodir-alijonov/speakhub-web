@@ -6,7 +6,8 @@ using SpeakHub.Service.Dtos.Accounts;
 using SpeakHub.Service.Dtos.Admins;
 using SpeakHub.Service.Interfaces.Accounts;
 
-namespace SpeakHub.Controllers.Accounts;
+namespace SpeakHub.Web.Controllers.Accounts;
+[Route("accounts")]
 public class AccountsController : Controller
 {
     private readonly IAccountService _service;
