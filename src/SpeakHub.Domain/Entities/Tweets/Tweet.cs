@@ -7,7 +7,8 @@ namespace SpeakHub.Domain.Entities.Tweets
     {
         public string TweetText { get; set; } = string.Empty;
         public string EditTweetText { get; set; } = string.Empty;
-        public int UserId { get; set; }
+        public string SaveTweet { get; set; } = string.Empty;
+        public int UserId { get; set; } 
         public virtual User User { get; set; } = default!;
     }
 }

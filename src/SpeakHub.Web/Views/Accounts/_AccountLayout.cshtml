@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+    <link href="~/css/site.css" rel="stylesheet" type="text/css" />
+</head>
+<body style="background-image: url(http://3.70.231.199/media/patterns/reb.png);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;">
+
+    <div>
+        @RenderBody()
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/plugins.site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

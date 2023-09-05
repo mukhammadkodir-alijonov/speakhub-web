@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Users\Controllers\" />
+    <Folder Include="Areas\Controllers\" />
     <Folder Include="wwwroot\media\images\" />
   </ItemGroup>
 
