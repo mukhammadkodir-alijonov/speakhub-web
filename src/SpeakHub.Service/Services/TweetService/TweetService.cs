@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DocumentFormat.OpenXml.Vml.Office;
+using Microsoft.EntityFrameworkCore;
 using SpeakHub.DataAccess.Interfaces.Common;
 using SpeakHub.Domain.Entities.Tweets;
 using SpeakHub.Service.Common.Exceptions;
@@ -84,6 +85,23 @@ namespace SpeakHub.Service.Services.TweetService
             var result = await _repository.SaveChangesAsync();
             return result > 0;
         }
+        /*public async Task<bool> SaveTweetAsync(int tweetId, TweetDto tweetDto)
+        {
+            var savetweet = await _repository.Tweets.FirstOrDefault(x => x.Id == tweetId);
+            if (savetweet == null)
+            {
+                var entity = new Tweet
+                {
+                    CreatedAt = TimeHelper.GetCurrentServerTime(),
+                    SaveTweet = tweetDto.TweetSave,
+                    LastUpdatedAt = TimeHelper.GetCurrentServerTime(),
+                };
+                var repo = _repository.Tweets.Add(entity);
+                var rresult = await _repository.SaveChangesAsync();
+                return rresult > 0;
+            }
+            else throw new StatusCodeException(HttpStatusCode.BadRequest, "This details for TweetSave are already exist!");
+        }*/
         public async Task<List<LikesPerTweetViewModel>> GetAllLikeByTweetAsync(int tweetId)
         {
             var query = await (from like in _repository.Likes.GetAll().Where(x => x.TweetId == tweetId).OrderByDescending(x => x.CreatedAt)
@@ -98,5 +116,6 @@ namespace SpeakHub.Service.Services.TweetService
                                }).ToListAsync();
             return query;
         }
+
     }
 }

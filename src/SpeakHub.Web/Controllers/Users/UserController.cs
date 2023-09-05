@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SpeakHub.Service.Common.Exceptions;
 using SpeakHub.Service.Common.Utils;
 using SpeakHub.Service.Dtos.Accounts;
@@ -18,6 +17,7 @@ namespace SpeakHub.Controllers
         private readonly IUserService _userService;
         private readonly IAccountService _accountService;
         private readonly IIdentityService _identityService;
+        private readonly int _pageSize = 2;
 
         public UserController(IUserService userService,IAccountService accountService, IIdentityService identityService)
         {
@@ -29,33 +29,23 @@ namespace SpeakHub.Controllers
         {
             return View();
         }
-        [HttpGet("Username")]
-        public async Task<IActionResult> GetAllUsernameAsync([FromQuery] PaginationParams paginationParams)
+        [HttpGet("username")]
+        public async Task<IActionResult> GetAllUsernameAsync(int page = 1)
         {
-            try
+            return await HandleExceptionAsync(async () =>
             {
-                var users = await _userService.GetAllUsernameAysnc(paginationParams);
+                var users = await _userService.GetAllUsernameAysnc(new PaginationParams(page, _pageSize));
                 return Ok(users);
-            }
-            catch (NotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
-
+            });
         }
         [HttpGet("all")]
-        public async Task<IActionResult> GetAllAsync([FromQuery] PaginationParams paginationParams)
+        public async Task<IActionResult> GetAllAsync(int page = 1)
         {
-            try
+            return await HandleExceptionAsync(async () =>
             {
-                var users = await _userService.GetAllAysnc(paginationParams);
+                var users = await _userService.GetAllAysnc(new PaginationParams(page, _pageSize));
                 return Ok(users);
-            }
-            catch (NotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            
+            });
         }
         [HttpGet("{email}")]
         public async Task<IActionResult> GetUserByEmailAsync(string email)
@@ -183,6 +173,17 @@ namespace SpeakHub.Controllers
                 else return await UserDeleteAsync();
             }
             else return await UserDeleteAsync();
+        }
+        private async Task<IActionResult> HandleExceptionAsync(Func<Task<IActionResult>> action)
+        {
+            try
+            {
+                return await action();
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

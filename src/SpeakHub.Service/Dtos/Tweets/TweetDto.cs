@@ -9,5 +9,6 @@ namespace SpeakHub.Service.Dtos.Tweets
         public string TweetText { get; set; } = string.Empty;
         [TweetCheck]
         public string EditTweetText { get; set; } = string.Empty;
+        public string TweetSave { get; set; } = string.Empty;
     }
 }
