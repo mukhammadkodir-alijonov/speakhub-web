@@ -114,7 +114,7 @@ namespace SpeakHub.Web.Controllers.Admins
             else return View("admins");
         }
 
-        [HttpPost("deleteAdmin")]
+        [HttpDelete("deleteAdmin")]
         public async Task<IActionResult> DeleteAdminAsync(int adminId)
         {
             var admin = await _adminService.DeleteAsync(adminId);
@@ -122,7 +122,7 @@ namespace SpeakHub.Web.Controllers.Admins
             else return View();
         }
 
-        [HttpPost("deleteImage")]
+        [HttpDelete("deleteImage")]
         public async Task<IActionResult> DeleteImageAsync(int adminId)
         {
             var image = await _adminService.DeleteImageAsync(adminId);

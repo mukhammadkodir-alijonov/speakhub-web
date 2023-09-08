@@ -13,6 +13,7 @@ namespace SpeakHub.Web.Controllers.Follows
         {
             _followService = followService;
         }
+        [HttpGet]
         public IActionResult Index()
         {
             return View();

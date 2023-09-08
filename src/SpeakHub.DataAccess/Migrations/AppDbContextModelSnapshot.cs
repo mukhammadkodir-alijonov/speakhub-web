@@ -76,12 +76,7 @@ namespace SpeakHub.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("TweetId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("TweetId");
 
                     b.ToTable("Admins");
                 });
@@ -214,6 +209,10 @@ namespace SpeakHub.DataAccess.Migrations
                     b.Property<DateTime>("LastUpdatedAt")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<string>("SaveTweet")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("TweetText")
                         .IsRequired()
                         .HasColumnType("text");
@@ -273,6 +272,9 @@ namespace SpeakHub.DataAccess.Migrations
                         .HasColumnType("text");
 
                     b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserRole")
                         .HasColumnType("integer");
 
                     b.Property<string>("Username")
@@ -336,17 +338,6 @@ namespace SpeakHub.DataAccess.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserProfiles");
-                });
-
-            modelBuilder.Entity("SpeakHub.Domain.Entities.Admins.Admin", b =>
-                {
-                    b.HasOne("SpeakHub.Domain.Entities.Tweets.Tweet", "Tweet")
-                        .WithMany()
-                        .HasForeignKey("TweetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Tweet");
                 });
 
             modelBuilder.Entity("SpeakHub.Domain.Entities.Comments.Comment", b =>

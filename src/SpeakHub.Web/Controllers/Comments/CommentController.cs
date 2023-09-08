@@ -14,6 +14,7 @@ namespace SpeakHub.Web.Controllers.Comments
         {
             _commentService = commentService;
         }
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -48,7 +49,7 @@ namespace SpeakHub.Web.Controllers.Comments
             }
         }
 
-        [HttpPost("delete")]
+        [HttpDelete("delete")]
         [Authorize]
         public async Task<IActionResult> DeleteAsync(int id)
         {

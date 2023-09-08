@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace SpeakHub.Web.Controllers
 {
+    [Route("tweets")]
     public class TweetController : Controller
     {
         private readonly ITweetService _tweetService;
@@ -65,7 +66,7 @@ namespace SpeakHub.Web.Controllers
             }
         }
 
-        [HttpPost("delete")]
+        [HttpDelete("delete")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
             try

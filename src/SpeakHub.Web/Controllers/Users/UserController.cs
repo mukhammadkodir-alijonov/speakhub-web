@@ -25,6 +25,7 @@ namespace SpeakHub.Controllers
             this._accountService = accountService;
             this._identityService = identityService;
         }
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -157,7 +158,7 @@ namespace SpeakHub.Controllers
         {
             return View();
         }
-        [HttpPost("deleteUser")]
+        [HttpDelete("deleteUser")]
         public async Task<IActionResult> UserDeleteAsync(UserDeleteDto userDeleteDto)
         {
             if (ModelState.IsValid)
