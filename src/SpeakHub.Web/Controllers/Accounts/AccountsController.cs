@@ -18,7 +18,6 @@ public class AccountsController : Controller
     }
 
     [HttpGet("register")]
-    [Authorize(Roles = "admin")]
     public ViewResult Register() => View("Register");
 
     [HttpPost("register")]
