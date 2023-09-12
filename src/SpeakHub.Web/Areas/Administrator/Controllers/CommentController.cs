@@ -1,54 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SpeakHub.Service.Interfaces.Comments;
-using SpeakHub.Service.Dtos.Tweets;
-using Microsoft.AspNetCore.Authorization;
 
-namespace SpeakHub.Web.Controllers.Comments
+namespace SpeakHub.Web.Areas.Administrator.Controllers
 {
-    [Route("comments")]
-    [Authorize]
+    [Route("admin/comments")]
     public class CommentController : Controller
     {
         private readonly ICommentService _commentService;
 
         public CommentController(ICommentService commentService)
         {
-            _commentService = commentService;
+            this._commentService = commentService;
         }
         [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
-        [HttpPost("create")]
-        public async Task<IActionResult> CreateAsync(int tweetId, TweetDto tweetDto)
-        {
-            try
-            {
-                bool result = await _commentService.CreateCommentAsync(tweetId, tweetDto);
-                if (result)
-                {
-                    return RedirectToAction("Index", "Tweet"); // Redirect to tweet details page
-                }
-                else
-                {
-                    TempData["ErrorMessage"] = "Failed to create comment.";
-                    return RedirectToAction("Index", "Tweet"); // Redirect to tweet details page with error message
-                }
-            }
-            catch (ArgumentException ex)
-            {
-                TempData["ErrorMessage"] = ex.Message;
-                return RedirectToAction("Index", "Tweet"); // Redirect to tweet details page with error message
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = $"An error occurred while creating the comment.{ex.Message}";
-                // Log the exception
-                return RedirectToAction("Index", "Tweet"); // Redirect to tweet details page with error message
-            }
-        }
-
         [HttpDelete("delete")]
         public async Task<IActionResult> DeleteAsync(int id)
         {

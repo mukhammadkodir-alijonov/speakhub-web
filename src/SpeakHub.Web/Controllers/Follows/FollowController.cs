@@ -5,6 +5,7 @@ using SpeakHub.Service.Interfaces.Follows;
 namespace SpeakHub.Web.Controllers.Follows
 {
     [Route("follows")]
+    [Authorize]
     public class FollowController : Controller
     {
         private readonly IFollowService _followService;
@@ -19,7 +20,6 @@ namespace SpeakHub.Web.Controllers.Follows
             return View();
         }
         [HttpPost("follow")]
-        [Authorize]
         public async Task<IActionResult> FollowAync(int userId1, int userId2)
         {
             bool isFollowed = await _followService.FollowAsync(userId1, userId2);
@@ -37,7 +37,6 @@ namespace SpeakHub.Web.Controllers.Follows
         }
 
         [HttpPost("unfollow")]
-        [Authorize]
         public async Task<IActionResult> UnfollowAsync(int userId1, int userId2)
         {
             bool isUnfollowed = await _followService.UnFollowAsync(userId1, userId2);

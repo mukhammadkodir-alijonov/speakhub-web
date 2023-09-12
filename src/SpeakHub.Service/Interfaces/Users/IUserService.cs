@@ -1,4 +1,5 @@
-﻿using SpeakHub.Service.Common.Utils;
+﻿using Microsoft.AspNetCore.Http;
+using SpeakHub.Service.Common.Utils;
 using SpeakHub.Service.Dtos.Users;
 using SpeakHub.Service.ViewModels.UserViewModels;
 
@@ -16,5 +17,7 @@ namespace SpeakHub.Service.Interfaces.Users
         public Task<bool> DeleteAsync(int id);
 
         public Task<UserViewModel> GetEmailAsync(string email);
+        public Task<bool> DeleteImageAsync(int id);
+        public Task<bool> ImageUpdateAsync(int id, IFormFile file);
     }
 }

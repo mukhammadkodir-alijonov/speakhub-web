@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SpeakHub.Service.Interfaces.Likes;
 
 namespace SpeakHub.Web.Controllers
 {
     [Route("likes")]
+    [Authorize]
     public class LikeController : Controller
     {
         private readonly ILikeService _likeService;
