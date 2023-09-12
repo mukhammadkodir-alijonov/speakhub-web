@@ -55,7 +55,7 @@ public class AccountService : IAccountService
         return result > 0;
     }
 
-    public async Task<bool> RegisterAsync(AccountRegisterDto registerDto)
+    public async Task<bool> RegisterAsync(AccountRegisterDto registerDto)                
     {
         var emailcheck = await _repository.Users.FirstOrDefault(x => x.Email == registerDto.Email);
         if (emailcheck is not null)
@@ -67,10 +67,10 @@ public class AccountService : IAccountService
 
         var hasherResult = PasswordHasher.Hash(registerDto.Password);
         var user = _mapper.Map<User>(registerDto);
+        user.UserRole = Role.User;
         user.PasswordHash = hasherResult.Hash;
         user.Salt = hasherResult.Salt;
         user.Status = StatusType.Active;
-        user.UserRole = Role.User;
         user.CreatedAt = TimeHelper.GetCurrentServerTime();
         user.LastUpdatedAt = TimeHelper.GetCurrentServerTime();
         _repository.Users.Add(user);
