@@ -1,15 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SpeakHub.Service.Interfaces.Tweets;
 using SpeakHub.Service.Dtos.Tweets;
-using SpeakHub.Service.ViewModels.TweetViewModels;
-using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+using SpeakHub.Service.Interfaces.Tweets;
 
-namespace SpeakHub.Web.Controllers
+namespace SpeakHub.Web.Areas.Administrator.Controllers
 {
-    [Route("tweets")]
-    [Authorize]
+    [Route("admin/tweets")]
     public class TweetController : Controller
     {
         private readonly ITweetService _tweetService;
@@ -33,24 +28,6 @@ namespace SpeakHub.Web.Controllers
                 return RedirectToAction("Index", "Home"); // Redirect to the home page with an error message
             }
         }
-
-        [HttpPost("create")]
-        public async Task<IActionResult> CreateAsync(TweetDto tweetDto)
-        {
-            try
-            {
-                bool result = await _tweetService.CreateTweetAsync(tweetDto.Id, tweetDto);
-                SetTempMessage(result, "Tweet created successfully.", "Failed to create tweet.");
-                return RedirectToAction("Index", new { userId = tweetDto.Id }); // Redirect to the tweet index page for the user
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = $"An error occurred while creating the tweet: {ex.Message}";
-                // Log the exception
-                return RedirectToAction("Index", "Home"); // Redirect to the home page with an error message
-            }
-        }
-
         [HttpPost("update")]
         public async Task<IActionResult> UpdateAsync(int id, TweetDto tweetDto)
         {
@@ -88,23 +65,6 @@ namespace SpeakHub.Web.Controllers
             }
             return RedirectToAction("Index", "Home"); // Redirect to the home page with an error message
         }
-
-        [HttpGet("like")]
-        public async Task<IActionResult> LikesAsync(int tweetId)
-        {
-            try
-            {
-                var likes = await _tweetService.GetAllLikeByTweetAsync(tweetId);
-                return View(likes);
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = $"An error occurred while fetching likes: {ex.Message}";
-                // Log the exception
-                return RedirectToAction("Index", "Home"); // Redirect to the home page with an error message
-            }
-        }
-
         private void SetTempMessage(bool success, string successMessage, string errorMessage)
         {
             TempData[success ? "SuccessMessage" : "ErrorMessage"] = success ? successMessage : errorMessage;

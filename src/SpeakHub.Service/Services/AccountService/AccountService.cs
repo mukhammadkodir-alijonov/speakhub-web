@@ -14,7 +14,6 @@ using SpeakHub.Service.Dtos.Users;
 using SpeakHub.Service.Interfaces.Accounts;
 using SpeakHub.Service.Interfaces.Common;
 using System.Net;
-using System.Net.Mail;
 
 namespace SpeakHub.Service.Services.AccountService;
 public class AccountService : IAccountService
@@ -56,6 +55,28 @@ public class AccountService : IAccountService
         return result > 0;
     }
 
+    public async Task<bool> RegisterAsync(AccountRegisterDto registerDto)
+    {
+        var emailcheck = await _repository.Users.FirstOrDefault(x => x.Email == registerDto.Email);
+        if (emailcheck is not null)
+            throw new StatusCodeException(HttpStatusCode.Conflict, "Email alredy exist");
+
+        var phoneNumberCheck = await _repository.Users.FirstOrDefault(x => x.PhoneNumber == registerDto.PhoneNumber);
+        if (phoneNumberCheck is not null)
+            throw new StatusCodeException(HttpStatusCode.Conflict, "Phone number alredy exist");
+
+        var hasherResult = PasswordHasher.Hash(registerDto.Password);
+        var user = _mapper.Map<User>(registerDto);
+        user.PasswordHash = hasherResult.Hash;
+        user.Salt = hasherResult.Salt;
+        user.Status = StatusType.Active;
+        user.UserRole = Role.User;
+        user.CreatedAt = TimeHelper.GetCurrentServerTime();
+        user.LastUpdatedAt = TimeHelper.GetCurrentServerTime();
+        _repository.Users.Add(user);
+        var databaseResult = await _repository.SaveChangesAsync();
+        return databaseResult > 0;
+    }
     public async Task<string> LoginAsync(AccountLoginDto accountLoginDto)
     {
         var admin = await _repository.Admins.FirstOrDefault(x => x.PhoneNumber == accountLoginDto.PhoneNumber);
@@ -128,28 +149,6 @@ public class AccountService : IAccountService
         else throw new StatusCodeException(HttpStatusCode.NotFound, "User not found");
     }
 
-    public async Task<bool> RegisterAsync(AccountRegisterDto registerDto)
-    {
-        var emailcheck = await _repository.Users.FirstOrDefault(x => x.Email == registerDto.Email);
-        if (emailcheck is not null)
-            throw new StatusCodeException(HttpStatusCode.Conflict, "Email alredy exist");
-
-        var phoneNumberCheck = await _repository.Users.FirstOrDefault(x => x.PhoneNumber == registerDto.PhoneNumber);
-        if (phoneNumberCheck is not null)
-            throw new StatusCodeException(HttpStatusCode.Conflict, "Phone number alredy exist");
-
-        var hasherResult = PasswordHasher.Hash(registerDto.Password);
-        var user = _mapper.Map<User>(registerDto);
-        user.PasswordHash = hasherResult.Hash;
-        user.Salt = hasherResult.Salt;
-        user.Status = StatusType.Active;
-        user.UserRole = Role.User;
-        user.CreatedAt = TimeHelper.GetCurrentServerTime();
-        user.LastUpdatedAt = TimeHelper.GetCurrentServerTime();
-        _repository.Users.Add(user);
-        var databaseResult = await _repository.SaveChangesAsync();
-        return databaseResult > 0;
-    }
 
     public async Task SendCodeAsync(SendToEmailDto sendToEmail)
     {

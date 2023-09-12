@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using DocumentFormat.OpenXml.Spreadsheet;
+using Microsoft.AspNetCore.Http;
 using SpeakHub.DataAccess.DbContexts;
 using SpeakHub.DataAccess.Interfaces.Common;
 using SpeakHub.Domain.Entities.Users;
@@ -94,6 +96,30 @@ namespace SpeakHub.Service.Services.UserService
                 else throw new StatusCodeException(HttpStatusCode.NotFound, "User not found");
             }
             else throw new StatusCodeException(HttpStatusCode.BadRequest, "Not allowed");
+        }
+        public async Task<bool> ImageUpdateAsync(int id, IFormFile path)
+        {
+            var user = await _unitOfWork.Users.FindByIdAsync(id);
+            if (user == null)
+                throw new StatusCodeException(System.Net.HttpStatusCode.NotFound, "user is not found");
+            _unitOfWork.Users.TrackingDeteched(user);
+            if (user.Image != null)
+            {
+                await _imageService.DeleteImageAsync(user.Image);
+            }
+            user.Image = await _imageService.SaveImageAsync(path);
+            _unitOfWork.Users.Update(id, user);
+            int res = await _unitOfWork.SaveChangesAsync();
+            return res > 0;
+        }
+        public async Task<bool> DeleteImageAsync(int id)
+        {
+            var user = await _unitOfWork.Users.FindByIdAsync(id);
+            await _imageService.DeleteImageAsync(user.Image);
+            user.Image = "";
+            _unitOfWork.Users.Update(id, user);
+            var result = await _unitOfWork.SaveChangesAsync();
+            return result > 0;
         }
     }
 }
