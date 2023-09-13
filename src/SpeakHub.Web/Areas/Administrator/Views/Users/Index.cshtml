@@ -1,0 +1,31 @@
+﻿@using SpeakHub.Service.ViewModels.UserViewModels;
+@model List<UserViewModel>
+<table class="table table-row-dashed table-row-gray-300 gy-7">
+    <thead>
+        <tr class="fw-bolder fs-6 text-gray-800">
+            <th>id</th>
+            <th>FirstName</th>
+            <th>Lastname</th>
+            <th>Phone number</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    @{
+        foreach (var order in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>@order.Id</td>
+                    <td>@order.FirstName</td>
+                    <td>@order.LastName</td>
+                    <td>@order.PhoneNumber</td>
+                    <td>@order.Email</td>
+                    <td><a asp-area="adminUsers" asp-controller="Users" asp-action="Update" asp-route-userid="@order.Id" class=" btn btn-primary">Edit</a></td>
+                    <td><a asp-controller="Users" asp-action="Delete" asp-route-userid="@order.Id" class="btn btn-danger">Delete</a></td>
+                </tr>
+
+            </tbody>
+        }
+    }
+
+</table>
