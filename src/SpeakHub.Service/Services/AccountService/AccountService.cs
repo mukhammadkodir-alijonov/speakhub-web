@@ -79,11 +79,11 @@ public class AccountService : IAccountService
     }
     public async Task<string> LoginAsync(AccountLoginDto accountLoginDto)
     {
-        var admin = await _repository.Admins.FirstOrDefault(x => x.PhoneNumber == accountLoginDto.PhoneNumber);
+        var admin = await _repository.Admins.FirstOrDefault(x => x.Email == accountLoginDto.Email);
         if (admin is null)
         {
-            var user = await _repository.Users.FirstOrDefault(x => x.PhoneNumber == accountLoginDto.PhoneNumber);
-            if (user is null) throw new NotFoundException(nameof(accountLoginDto.PhoneNumber), "No user with this phone number is found!");
+            var user = await _repository.Users.FirstOrDefault(x => x.Email == accountLoginDto.Email);
+            if (user is null) throw new NotFoundException(nameof(accountLoginDto.Email), "No user with this phone number is found!");
             else
             {
                 var hasherResult = PasswordHasher.Verify(accountLoginDto.Password, user.Salt, user.PasswordHash);
