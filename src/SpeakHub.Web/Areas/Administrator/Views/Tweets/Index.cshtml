@@ -1,0 +1,30 @@
+﻿@using SpeakHub.Service.ViewModels.TweetViewModels;
+@model List<TweetViewModel>
+<table class="table table-row-dashed table-row-gray-300 gy-7">
+    <thead>
+        <tr class="fw-bolder fs-6 text-gray-800">
+            <th>id</th>
+            <th>TweetText</th>
+            <th>EditTweetText</th>
+            <th>LikeCount</th>
+            <th>CommentCount</th>
+        </tr>
+    </thead>
+    @{
+        foreach (var tweet in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>@tweet.Id</td>
+                    <td>@tweet.TweetText</td>
+                    <td>@tweet.EditTweetText/td>
+                    <td>@tweet.LikeCount</td>
+                    <td>@tweet.CommentCount</td>
+                    <td><a asp-controller="Tweet" asp-action="Delete" asp-route-userid="@tweet.Id" class="btn btn-danger">DeleteTweet</a></td>
+                    <td><a asp-controller="Tweet" asp-action="Update" asp-route-userid="@tweet.Id" class="btn btn-danger">DeleteComment</a></td>
+                </tr>
+
+            </tbody>
+        }
+    }
+</table>

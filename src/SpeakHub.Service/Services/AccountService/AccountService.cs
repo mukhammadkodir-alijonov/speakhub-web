@@ -24,7 +24,7 @@ public class AccountService : IAccountService
     private readonly IMapper _mapper;
     private readonly IEmailService _emailService;
 
-    public AccountService(IUnitOfWork unitOfWork, IAuthService authService, IMapper mapper,IMemoryCache memoryCache,IEmailService emailService)
+    public AccountService(IUnitOfWork unitOfWork, IAuthService authService, IMapper mapper, IMemoryCache memoryCache, IEmailService emailService)
     {
         this._memoryCache = memoryCache;
         this._repository = unitOfWork;
@@ -55,7 +55,7 @@ public class AccountService : IAccountService
         return result > 0;
     }
 
-    public async Task<bool> RegisterAsync(AccountRegisterDto registerDto)                
+    public async Task<bool> RegisterAsync(AccountRegisterDto registerDto)
     {
         var emailcheck = await _repository.Users.FirstOrDefault(x => x.Email == registerDto.Email);
         if (emailcheck is not null)
@@ -124,7 +124,7 @@ public class AccountService : IAccountService
 
         return true;
     }
-    
+
     public async Task<bool> PasswordUpdateAsync(PasswordUpdateDto passwordUpdateDto)
     {
         var user = await _repository.Users.FindByIdAsync(HttpContextHelper.UserId);

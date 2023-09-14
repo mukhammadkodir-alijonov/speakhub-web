@@ -5,7 +5,7 @@ namespace SpeakHub.Service.Dtos.Accounts
 {
     public class AccountLoginDto
     {
-        [Required(ErrorMessage = "Enter an EMail!")]
+        [Required(ErrorMessage = "Enter an Email!")]
         [Email]
         public string Email { get; set; } = String.Empty;
 

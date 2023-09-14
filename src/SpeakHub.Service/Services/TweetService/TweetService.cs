@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Vml.Office;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SpeakHub.DataAccess.Interfaces.Common;
 using SpeakHub.Domain.Entities.Tweets;
 using SpeakHub.Service.Common.Exceptions;
