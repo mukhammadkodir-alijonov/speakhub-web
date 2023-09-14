@@ -32,6 +32,7 @@ body {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+?
 
 @layer components {
     .nav-button {
@@ -1352,4 +1353,12 @@ video {
         background-color: rgb(45 55 65 / var(--tw-bg-opacity));
     }
 }
-
+/*
+    for register
+*/
+.form-label {
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 500;
+}

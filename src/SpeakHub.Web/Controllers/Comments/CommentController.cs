@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SpeakHub.Service.Interfaces.Comments;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SpeakHub.Service.Dtos.Tweets;
-using Microsoft.AspNetCore.Authorization;
+using SpeakHub.Service.Interfaces.Comments;
 
 namespace SpeakHub.Web.Controllers.Comments
 {

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.AspNetCore.Http;
 using SpeakHub.DataAccess.DbContexts;
 using SpeakHub.DataAccess.Interfaces.Common;

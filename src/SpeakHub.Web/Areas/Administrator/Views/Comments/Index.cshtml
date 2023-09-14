@@ -1,0 +1,23 @@
+﻿@using SpeakHub.Service.ViewModels.CommentViewModels;
+@model List<CommentViewModel>
+<table class="table table-row-dashed table-row-gray-300 gy-7">
+    <thead>
+        <tr class="fw-bolder fs-6 text-gray-800">
+            <th>id</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    @{
+        foreach (var comment in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>@comment.Id</td>
+                    <td>@comment.Comment</td>
+                    <td><a asp-controller="Comment" asp-action="Delete" asp-route-userid="@comment.Id" class="btn btn-danger">DeleteComment</a></td>
+                </tr>
+
+            </tbody>
+        }
+    }
+</table>

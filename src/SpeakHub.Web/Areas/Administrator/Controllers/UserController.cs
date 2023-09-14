@@ -1,16 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using SpeakHub.Service.Common.Exceptions;
-using SpeakHub.Service.Common.Helpers;
+﻿using Microsoft.AspNetCore.Mvc;
 using SpeakHub.Service.Common.Utils;
-using SpeakHub.Service.Dtos.Accounts;
-using SpeakHub.Service.Dtos.Admins;
 using SpeakHub.Service.Dtos.Users;
-using SpeakHub.Service.Interfaces.Accounts;
 using SpeakHub.Service.Interfaces.Users;
 
 namespace SpeakHub.Web.Areas.Administrator.Controllers;
-[Route("admin/users")]
+[Route("adminUsers")]
 public class UserController : Controller
 {
     private readonly IUserService _userService;

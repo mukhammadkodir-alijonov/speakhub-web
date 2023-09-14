@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using SpeakHub.Service.Common.Exceptions;
+﻿using Microsoft.AspNetCore.Mvc;
 using SpeakHub.Service.Common.Helpers;
-using SpeakHub.Service.Dtos.Accounts;
 using SpeakHub.Service.Dtos.Admins;
 using SpeakHub.Service.Interfaces.Accounts;
 

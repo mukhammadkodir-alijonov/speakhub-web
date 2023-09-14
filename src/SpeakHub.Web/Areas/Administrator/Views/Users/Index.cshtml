@@ -8,24 +8,28 @@
             <th>Lastname</th>
             <th>Phone number</th>
             <th>Email</th>
+            <th>Image</th>
+
         </tr>
     </thead>
     @{
-        foreach (var order in Model)
+        foreach (var user in Model)
         {
             <tbody>
                 <tr>
-                    <td>@order.Id</td>
-                    <td>@order.FirstName</td>
-                    <td>@order.LastName</td>
-                    <td>@order.PhoneNumber</td>
-                    <td>@order.Email</td>
-                    <td><a asp-area="adminUsers" asp-controller="Users" asp-action="Update" asp-route-userid="@order.Id" class=" btn btn-primary">Edit</a></td>
-                    <td><a asp-controller="Users" asp-action="Delete" asp-route-userid="@order.Id" class="btn btn-danger">Delete</a></td>
+                    <td>@user.Id</td>
+                    <td>@user.FirstName</td>
+                    <td>@user.LastName</td>
+                    <td>@user.PhoneNumber</td>
+                    <td>@user.Email</td>
+                    <td>@user.Image</td>
+                    <td><a asp-area="adminUsers" asp-controller="Users" asp-action="Update" asp-route-userid="@user.Id" class=" btn btn-primary">Edit</a></td>
+                    <td><a asp-controller="User" asp-action="Delete" asp-route-userid="@user.Id" class="btn btn-danger">Delete</a></td>
+                    <td><a asp-controller="User" asp-action="UpdateImage" asp-route-userid="@user.Id" class="btn btn-danger">UpdateImage</a></td>
+                    <td><a asp-controller="User" asp-action="DeleteImage" asp-route-userid="@user.Id" class="btn btn-danger">DeleteImage</a></td>
                 </tr>
 
             </tbody>
         }
     }
-
 </table>

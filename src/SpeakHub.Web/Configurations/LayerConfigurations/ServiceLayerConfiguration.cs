@@ -29,10 +29,10 @@ namespace SpeakHub.Configurations.LayerConfigurations
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<ICommentService, CommentService>();
-            services.AddScoped<IFollowService,FollowService>();
+            services.AddScoped<IFollowService, FollowService>();
             services.AddScoped<ILikeService, LikeService>();
             services.AddScoped<ITweetService, TweetService>();
-            services.AddScoped<IUserService,UserService>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IEmailService, EmailService>();

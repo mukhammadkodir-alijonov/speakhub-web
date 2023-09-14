@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SpeakHub.Service.Interfaces.Tweets;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SpeakHub.Service.Dtos.Tweets;
-using SpeakHub.Service.ViewModels.TweetViewModels;
-using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+using SpeakHub.Service.Interfaces.Tweets;
 
 namespace SpeakHub.Web.Controllers
 {

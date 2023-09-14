@@ -19,7 +19,7 @@ namespace SpeakHub.Controllers
         private readonly IIdentityService _identityService;
         private readonly int _pageSize = 2;
 
-        public UserController(IUserService userService,IAccountService accountService, IIdentityService identityService)
+        public UserController(IUserService userService, IAccountService accountService, IIdentityService identityService)
         {
             this._userService = userService;
             this._accountService = accountService;

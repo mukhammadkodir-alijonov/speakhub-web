@@ -1,5 +1,4 @@
-﻿using SpeakHub.Domain.Entities.Tweets;
-using SpeakHub.Domain.Enums;
+﻿using SpeakHub.Domain.Enums;
 
 namespace SpeakHub.Domain.Entities.Admins
 {
