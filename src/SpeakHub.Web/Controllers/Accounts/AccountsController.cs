@@ -1,9 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using Microsoft.AspNetCore.Mvc;
+using SpeakHub.Domain.Entities.Users;
+using SpeakHub.Domain.Enums;
 using SpeakHub.Service.Common.Exceptions;
 using SpeakHub.Service.Common.Helpers;
+using SpeakHub.Service.Common.Utils;
 using SpeakHub.Service.Dtos.Accounts;
 using SpeakHub.Service.Dtos.Admins;
 using SpeakHub.Service.Interfaces.Accounts;
+using SpeakHub.Service.Interfaces.Users;
 
 namespace SpeakHub.Web.Controllers.Accounts
 {
@@ -11,10 +16,9 @@ namespace SpeakHub.Web.Controllers.Accounts
     public class AccountsController : Controller
     {
         private readonly IAccountService _service;
-
         public AccountsController(IAccountService accountService)
         {
-            _service = accountService;
+            this._service = accountService;
         }
         [HttpGet("register")]
         public ViewResult Register() => View("Register");
@@ -52,7 +56,24 @@ namespace SpeakHub.Web.Controllers.Accounts
                         HttpOnly = true,
                         SameSite = SameSiteMode.Strict
                     });
-                    return RedirectToAction("Index", "Home", new { area = "" });
+                    var user = await _userService.GetEmailAsync(accountLoginDto.Email);
+                    if (user != null)
+                    {
+                        if (!Enum.IsDefined(typeof(Role), user.UserRole))
+                        {
+                            return RedirectToAction("Index", "Admin", new { area = "administrator" });
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home", new { area = "" });
+                        }
+                    }
+                    else
+                    {
+                        // Foydalanuvchi aniqlanmadi, xatolikni ko'rsatish
+                        ModelState.AddModelError("Email", "Foydalanuvchi topilmadi");
+                        return Login();
+                    }
                 }
                 catch (ModelErrorException modelError)
                 {
@@ -66,6 +87,7 @@ namespace SpeakHub.Web.Controllers.Accounts
             }
             else return Login();
         }
+
         [HttpGet("logout")]
         public IActionResult LogOut()
         {
@@ -77,3 +99,5 @@ namespace SpeakHub.Web.Controllers.Accounts
         }
     }
 }
+
+

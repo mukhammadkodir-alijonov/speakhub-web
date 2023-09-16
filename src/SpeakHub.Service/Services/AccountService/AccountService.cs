@@ -83,7 +83,7 @@ public class AccountService : IAccountService
         if (admin is null)
         {
             var user = await _repository.Users.FirstOrDefault(x => x.Email == accountLoginDto.Email);
-            if (user is null) throw new NotFoundException(nameof(accountLoginDto.Email), "No user with this phone number is found!");
+            if (user is null) throw new NotFoundException(nameof(accountLoginDto.Email), "No user with this email is found!");
             else
             {
                 var hasherResult = PasswordHasher.Verify(accountLoginDto.Password, user.Salt, user.PasswordHash);
