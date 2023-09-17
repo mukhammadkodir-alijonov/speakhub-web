@@ -6,6 +6,6 @@ namespace SpeakHub.Domain.Entities.Followers
     public class Following : Auditable
     {
         public int UserId { get; set; }
-        public virtual UserProfile? User { get; set; }
+        public virtual User? User { get; set; }
     }
 }

@@ -51,14 +51,14 @@ namespace SpeakHub.Service.Services.TweetService
             }
             else throw new StatusCodeException(HttpStatusCode.BadRequest, "This details for Tweet are already exist!");
         }
-        public async Task<bool> UpdateTweetAsync(int id, TweetDto tweetDto)
+        public async Task<bool> UpdateTweetAsync(int id, EditTweetDto editTweetDto)
         {
             var editTweet = await _repository.Tweets.FirstOrDefault(x => x.Id == id);
             if (editTweet != null)
             {
                 _repository.Tweets.TrackingDeteched(editTweet);
                 editTweet.LastUpdatedAt = DateTime.Now;
-                editTweet.EditTweetText = tweetDto.EditTweetText;
+                editTweet.EditTweetText = editTweetDto.EditTweetText;
                 editTweet.Id = id;
                 _repository.Tweets.Update(editTweet.Id, editTweet);
                 var result = await _repository.SaveChangesAsync();
@@ -84,7 +84,7 @@ namespace SpeakHub.Service.Services.TweetService
             var result = await _repository.SaveChangesAsync();
             return result > 0;
         }
-        /*public async Task<bool> SaveTweetAsync(int tweetId, TweetDto tweetDto)
+        public async Task<bool> SaveTweetAsync(int tweetId, SaveTweetDto saveTweetDto)
         {
             var savetweet = await _repository.Tweets.FirstOrDefault(x => x.Id == tweetId);
             if (savetweet == null)
@@ -92,7 +92,7 @@ namespace SpeakHub.Service.Services.TweetService
                 var entity = new Tweet
                 {
                     CreatedAt = TimeHelper.GetCurrentServerTime(),
-                    SaveTweet = tweetDto.TweetSave,
+                    SaveTweet = saveTweetDto.TweetSave,
                     LastUpdatedAt = TimeHelper.GetCurrentServerTime(),
                 };
                 var repo = _repository.Tweets.Add(entity);
@@ -100,7 +100,7 @@ namespace SpeakHub.Service.Services.TweetService
                 return rresult > 0;
             }
             else throw new StatusCodeException(HttpStatusCode.BadRequest, "This details for TweetSave are already exist!");
-        }*/
+        }
         public async Task<List<LikesPerTweetViewModel>> GetAllLikeByTweetAsync(int tweetId)
         {
             var query = await (from like in _repository.Likes.GetAll().Where(x => x.TweetId == tweetId).OrderByDescending(x => x.CreatedAt)

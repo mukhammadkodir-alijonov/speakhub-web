@@ -29,13 +29,13 @@ namespace SpeakHub.Web.Areas.Administrator.Controllers
             }
         }
         [HttpPost("update")]
-        public async Task<IActionResult> UpdateAsync(int id, TweetDto tweetDto)
+        public async Task<IActionResult> UpdateAsync(int id, EditTweetDto editTweetDto)
         {
             try
             {
-                bool result = await _tweetService.UpdateTweetAsync(id, tweetDto);
+                bool result = await _tweetService.UpdateTweetAsync(id, editTweetDto);
                 SetTempMessage(result, "Tweet updated successfully.", "Failed to update tweet.");
-                return RedirectToAction("Index", new { userId = tweetDto.Id }); // Redirect to the tweet index page for the user
+                return RedirectToAction("Index", new { userId = editTweetDto.Id }); // Redirect to the tweet index page for the user
             }
             catch (Exception ex)
             {

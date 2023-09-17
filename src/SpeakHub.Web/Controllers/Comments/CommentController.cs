@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SpeakHub.Service.Dtos.Comments;
 using SpeakHub.Service.Dtos.Tweets;
 using SpeakHub.Service.Interfaces.Comments;
 
@@ -21,11 +22,11 @@ namespace SpeakHub.Web.Controllers.Comments
             return View();
         }
         [HttpPost("create")]
-        public async Task<IActionResult> CreateAsync(int tweetId, TweetDto tweetDto)
+        public async Task<IActionResult> CreateAsync(int tweetId, CommentDto commentDto)
         {
             try
             {
-                bool result = await _commentService.CreateCommentAsync(tweetId, tweetDto);
+                bool result = await _commentService.CreateCommentAsync(tweetId, commentDto);
                 if (result)
                 {
                     return RedirectToAction("Index", "Tweet"); // Redirect to tweet details page

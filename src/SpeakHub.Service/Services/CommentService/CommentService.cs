@@ -1,7 +1,9 @@
 ﻿using SpeakHub.DataAccess.Interfaces.Common;
+using SpeakHub.Domain.Entities.Comments;
 using SpeakHub.Domain.Entities.Tweets;
 using SpeakHub.Service.Common.Exceptions;
 using SpeakHub.Service.Common.Helpers;
+using SpeakHub.Service.Dtos.Comments;
 using SpeakHub.Service.Dtos.Tweets;
 using SpeakHub.Service.Interfaces.Comments;
 using System.Net;
@@ -15,19 +17,19 @@ namespace SpeakHub.Service.Services.Comments
         {
             this._repository = unitOfWork;
         }
-        public async Task<bool> CreateCommentAsync(int tweetId, TweetDto tweetDto)
+        public async Task<bool> CreateCommentAsync(int tweetId, CommentDto commentDto)
         {
-            var check = await _repository.Tweets.FirstOrDefault(x => x.Id == tweetId);
+            var check = await _repository.Comments.FirstOrDefault(x => x.Id == tweetId);
             if (check == null)
             {
-                var entity = new Tweet()
+                var entity = new Comment()
                 {
-                    Id = tweetDto.Id,
+                    Id = commentDto.Id,
                     CreatedAt = TimeHelper.GetCurrentServerTime(),
                     LastUpdatedAt = TimeHelper.GetCurrentServerTime(),
-                    TweetText = tweetDto.TweetText,
+                    CommentText = commentDto.CommentText,
                 };
-                var res = _repository.Tweets.Add(entity);
+                var res = _repository.Comments.Add(entity);
                 var result = await _repository.SaveChangesAsync();
                 return result > 0;
             }

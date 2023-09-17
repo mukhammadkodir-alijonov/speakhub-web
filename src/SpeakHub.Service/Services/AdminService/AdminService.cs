@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using SpeakHub.DataAccess.Interfaces.Common;
 using SpeakHub.Service.Common.Exceptions;
@@ -9,6 +10,8 @@ using SpeakHub.Service.Interfaces.Admins;
 using SpeakHub.Service.Interfaces.Common;
 using SpeakHub.Service.Interfaces.Files;
 using SpeakHub.Service.ViewModels.AdminViewModels;
+using SpeakHub.Service.ViewModels.UserViewModels;
+using System.Net;
 
 namespace SpeakHub.Service.Services.AdminService
 {
@@ -17,12 +20,14 @@ namespace SpeakHub.Service.Services.AdminService
         private readonly IUnitOfWork _unitOfWork;
         private readonly IIdentityService _identityService;
         private readonly IFileService _fileService;
+        private readonly IMapper _imapper;
 
-        public AdminService(IUnitOfWork unitOfWork, IIdentityService identityService, IFileService fileService)
+        public AdminService(IMapper imapper, IUnitOfWork unitOfWork, IIdentityService identityService, IFileService fileService)
         {
             this._unitOfWork = unitOfWork;
             this._identityService = identityService;
             this._fileService = fileService;
+            this._imapper = imapper;
         }
 
         public async Task<bool> DeleteAsync(int id)
@@ -79,6 +84,14 @@ namespace SpeakHub.Service.Services.AdminService
             var admin = await _unitOfWork.Admins.FirstOrDefault(x => x.PhoneNumber == phoneNumber);
             if (admin is null) throw new NotFoundException("Admin", $"{phoneNumber} not found");
             var adminView = (AdminViewModel)admin;
+            return adminView;
+        }
+        public async Task<AdminViewModel> GetEmailAsync(string email)
+        {
+            var admin = await _unitOfWork.Admins.GetByEmailAsync(email.Trim());
+            if (admin is null)
+                throw new StatusCodeException(HttpStatusCode.NotFound, "admin not found");
+            var adminView = _imapper.Map<AdminViewModel>(admin);
             return adminView;
         }
 
@@ -147,6 +160,5 @@ namespace SpeakHub.Service.Services.AdminService
             else
                 throw new StatusCodeException(System.Net.HttpStatusCode.BadRequest, "Invalid Password");
         }
-
     }
 }
