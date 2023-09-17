@@ -1,14 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace SpeakHub.Service.Common.Attributes
 {
     [AttributeUsage(AttributeTargets.Property)]
-    public class TweetCheckAttribute : ValidationAttribute
+    public class CommentAttribute : ValidationAttribute
     {
         private readonly int _maxLength;
         private readonly int _minLength;
 
-        public TweetCheckAttribute(int maxLength = 180, int minLength = 5)
+        public CommentAttribute(int maxLength = 180, int minLength = 2)
         {
             _maxLength = maxLength;
             _minLength = minLength;

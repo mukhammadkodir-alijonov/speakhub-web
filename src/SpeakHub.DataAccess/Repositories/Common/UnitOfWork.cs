@@ -12,7 +12,6 @@ namespace SpeakHub.DataAccess.Repositories.Common
         public ICommentRepository Comments { get; }
         public IAdminRepository Admins { get; }
         public ITweetRepository Tweets { get; }
-        public IUserProfileRepository UserProfiles { get; }
         public IUserRepository Users { get; }
         public IFollowRepasitory Follows { get; }
 
@@ -23,7 +22,6 @@ namespace SpeakHub.DataAccess.Repositories.Common
             Comments = new CommentRepository(_dbContext);
             Admins = new AdminRepository(_dbContext);
             Tweets = new TweetRepository(_dbContext);
-            UserProfiles = new UserProfileRepository(_dbContext);
             Users = new UserRepository(_dbContext);
             Follows = new FollowRepasitory(_dbContext);
         }

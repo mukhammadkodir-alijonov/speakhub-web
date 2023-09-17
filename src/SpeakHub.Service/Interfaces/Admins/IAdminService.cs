@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using SpeakHub.Service.Dtos.Admins;
 using SpeakHub.Service.ViewModels.AdminViewModels;
+using SpeakHub.Service.ViewModels.UserViewModels;
 
 namespace SpeakHub.Service.Interfaces.Admins
 {
@@ -10,6 +11,7 @@ namespace SpeakHub.Service.Interfaces.Admins
         public Task<List<AdminViewModel>> GetAllAsync(string search);
         public Task<List<AdminViewModel>> GetAllAsync();
         public Task<AdminViewModel> GetByIdAsync(int id);
+        public Task<AdminViewModel> GetEmailAsync(string email);
         public Task<bool> UpdateAsync(int id, AdminUpdateDto adminUpdateDto);
         public Task<bool> UpdateImageAsync(int id, IFormFile from);
         public Task<bool> DeleteAsync(int id);

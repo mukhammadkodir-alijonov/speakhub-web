@@ -1,10 +1,11 @@
-﻿using SpeakHub.Service.Dtos.Tweets;
+﻿using SpeakHub.Service.Dtos.Comments;
+using SpeakHub.Service.Dtos.Tweets;
 
 namespace SpeakHub.Service.Interfaces.Comments
 {
     public interface ICommentService
     {
-        public Task<bool> CreateCommentAsync(int id, TweetDto tweetDto);
+        public Task<bool> CreateCommentAsync(int id, CommentDto commentDto);
         public Task<bool> DeleteCommentAsync(int id);
     }
 }

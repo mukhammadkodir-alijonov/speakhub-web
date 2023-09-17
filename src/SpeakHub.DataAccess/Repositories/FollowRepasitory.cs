@@ -58,8 +58,8 @@ namespace SpeakHub.DataAccess.Repositories
         {
             try
             {
-                UserProfile UserA = await _appDbConext.UserProfiles.FirstOrDefaultAsync(u => u.Id == _userId1);
-                UserProfile UserB = await _appDbConext.UserProfiles.FirstOrDefaultAsync(u => u.Id == _userId2);
+                User UserA = await _appDbConext.Users.FirstOrDefaultAsync(u => u.Id == _userId1);
+                User UserB = await _appDbConext.Users.FirstOrDefaultAsync(u => u.Id == _userId2);
 
                 if (UserA != null || UserB != null)
                 {
@@ -103,13 +103,13 @@ namespace SpeakHub.DataAccess.Repositories
         {
             try
             {
-                UserProfile UserA = await _appDbConext.UserProfiles.FirstOrDefaultAsync(u => u.Id == _userId1);
-                UserProfile UserB = await _appDbConext.UserProfiles.FirstOrDefaultAsync(u => u.Id == _userId2);
+                User UserA = await _appDbConext.Users.FirstOrDefaultAsync(u => u.Id == _userId1);
+                User UserB = await _appDbConext.Users.FirstOrDefaultAsync(u => u.Id == _userId2);
                 if (UserA != null && UserB != null)
                 {
-                    Following B = UserA.Followings.FirstOrDefault(f => f.UserId == UserB.UserId);
-                    Follower A = UserB.Followers.FirstOrDefault(f => f.UserId == UserA.UserId);
-
+                    Following B = UserA.Followings.FirstOrDefault(f => f.UserId == UserB.Id)!;
+                    Follower A = UserB.Followers.FirstOrDefault(f => f.UserId == UserA.Id)!;
+                     
                     if (B != null && A != null)
                     {
                         UserA.Followings.Remove(B);

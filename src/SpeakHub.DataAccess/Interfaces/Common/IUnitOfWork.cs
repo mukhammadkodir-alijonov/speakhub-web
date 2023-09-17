@@ -8,7 +8,6 @@ namespace SpeakHub.DataAccess.Interfaces.Common
         public ITweetRepository Tweets { get; }
         public ILikeRepository Likes { get; }
         public ICommentRepository Comments { get; }
-        public IUserProfileRepository UserProfiles { get; }
         public IUserRepository Users { get; }
         public IFollowRepasitory Follows { get; }
         public Task<int> SaveChangesAsync();

@@ -8,6 +8,7 @@ using SpeakHub.Service.Common.Utils;
 using SpeakHub.Service.Dtos.Accounts;
 using SpeakHub.Service.Dtos.Admins;
 using SpeakHub.Service.Interfaces.Accounts;
+using SpeakHub.Service.Interfaces.Admins;
 using SpeakHub.Service.Interfaces.Users;
 
 namespace SpeakHub.Web.Controllers.Accounts
@@ -16,9 +17,12 @@ namespace SpeakHub.Web.Controllers.Accounts
     public class AccountsController : Controller
     {
         private readonly IAccountService _service;
-        public AccountsController(IAccountService accountService)
+        private readonly IAdminService _adminService;
+
+        public AccountsController(IAccountService accountService, IAdminService adminService)
         {
             this._service = accountService;
+            this._adminService= adminService;
         }
         [HttpGet("register")]
         public ViewResult Register() => View("Register");
@@ -56,12 +60,12 @@ namespace SpeakHub.Web.Controllers.Accounts
                         HttpOnly = true,
                         SameSite = SameSiteMode.Strict
                     });
-                    var user = await _userService.GetEmailAsync(accountLoginDto.Email);
+                    var user = await _adminService.GetEmailAsync(accountLoginDto.Email);
                     if (user != null)
                     {
-                        if (!Enum.IsDefined(typeof(Role), user.UserRole))
+                        if (Enum.IsDefined(typeof(Role), user.Role))
                         {
-                            return RedirectToAction("Index", "Admin", new { area = "administrator" });
+                            return RedirectToAction("Index", "Home", new { area = "administrator" });
                         }
                         else
                         {

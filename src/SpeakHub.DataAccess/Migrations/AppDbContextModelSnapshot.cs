@@ -286,60 +286,6 @@ namespace SpeakHub.DataAccess.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("SpeakHub.Domain.Entities.Users.UserProfile", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Bio")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("BirthDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("LastUpdatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserProfiles");
-                });
-
             modelBuilder.Entity("SpeakHub.Domain.Entities.Comments.Comment", b =>
                 {
                     b.HasOne("SpeakHub.Domain.Entities.Tweets.Tweet", "Tweet")
@@ -361,7 +307,7 @@ namespace SpeakHub.DataAccess.Migrations
 
             modelBuilder.Entity("SpeakHub.Domain.Entities.Followers.Follower", b =>
                 {
-                    b.HasOne("SpeakHub.Domain.Entities.Users.UserProfile", "User")
+                    b.HasOne("SpeakHub.Domain.Entities.Users.User", "User")
                         .WithMany("Followers")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -372,7 +318,7 @@ namespace SpeakHub.DataAccess.Migrations
 
             modelBuilder.Entity("SpeakHub.Domain.Entities.Followers.Following", b =>
                 {
-                    b.HasOne("SpeakHub.Domain.Entities.Users.UserProfile", "User")
+                    b.HasOne("SpeakHub.Domain.Entities.Users.User", "User")
                         .WithMany("Followings")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -411,18 +357,7 @@ namespace SpeakHub.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("SpeakHub.Domain.Entities.Users.UserProfile", b =>
-                {
-                    b.HasOne("SpeakHub.Domain.Entities.Users.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("SpeakHub.Domain.Entities.Users.UserProfile", b =>
+            modelBuilder.Entity("SpeakHub.Domain.Entities.Users.User", b =>
                 {
                     b.Navigation("Followers");
 

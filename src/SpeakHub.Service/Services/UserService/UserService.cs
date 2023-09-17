@@ -100,7 +100,7 @@ namespace SpeakHub.Service.Services.UserService
         {
             var user = await _unitOfWork.Users.FindByIdAsync(id);
             if (user == null)
-                throw new StatusCodeException(System.Net.HttpStatusCode.NotFound, "user is not found");
+                throw new StatusCodeException(HttpStatusCode.NotFound, "user is not found");
             _unitOfWork.Users.TrackingDeteched(user);
             if (user.Image != null)
             {

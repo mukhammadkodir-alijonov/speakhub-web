@@ -19,7 +19,7 @@ namespace SpeakHub.Service.ViewModels.AdminViewModels
 
         public string Address { get; set; } = String.Empty;
 
-        public Role Role { get; set; }
+        public Role Role { get; set; } = Role.Admin;
 
         public DateTime CreatedAt { get; set; } = default!;
 

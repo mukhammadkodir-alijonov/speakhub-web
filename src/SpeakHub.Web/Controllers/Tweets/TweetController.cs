@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using DocumentFormat.OpenXml.Drawing;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SpeakHub.Service.Dtos.Tweets;
 using SpeakHub.Service.Interfaces.Tweets;
@@ -32,11 +33,11 @@ namespace SpeakHub.Web.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateAsync(TweetDto tweetDto)
+        public async Task<IActionResult> CreateAsync(int tweetId, TweetDto tweetDto)
         {
             try
             {
-                bool result = await _tweetService.CreateTweetAsync(tweetDto.Id, tweetDto);
+                bool result = await _tweetService.CreateTweetAsync(tweetId, tweetDto);
                 SetTempMessage(result, "Tweet created successfully.", "Failed to create tweet.");
                 return RedirectToAction("Index", new { userId = tweetDto.Id }); // Redirect to the tweet index page for the user
             }
@@ -49,13 +50,13 @@ namespace SpeakHub.Web.Controllers
         }
 
         [HttpPost("update")]
-        public async Task<IActionResult> UpdateAsync(int id, TweetDto tweetDto)
+        public async Task<IActionResult> UpdateAsync(int id, EditTweetDto editTweetDto)
         {
             try
             {
-                bool result = await _tweetService.UpdateTweetAsync(id, tweetDto);
+                bool result = await _tweetService.UpdateTweetAsync(id, editTweetDto);
                 SetTempMessage(result, "Tweet updated successfully.", "Failed to update tweet.");
-                return RedirectToAction("Index", new { userId = tweetDto.Id }); // Redirect to the tweet index page for the user
+                return RedirectToAction("Index", new { userId = editTweetDto.Id }); // Redirect to the tweet index page for the user
             }
             catch (Exception ex)
             {
@@ -84,6 +85,22 @@ namespace SpeakHub.Web.Controllers
                 // Log the exception
             }
             return RedirectToAction("Index", "Home"); // Redirect to the home page with an error message
+        }
+        [HttpPost("save")]
+        public async Task<IActionResult> SaveAsync(int id, SaveTweetDto saveTweetDto)
+        {
+            try
+            {
+                bool result = await _tweetService.SaveTweetAsync(id, saveTweetDto);
+                SetTempMessage(result, "Tweet saved successfully.", "Failed to update tweet.");
+                return RedirectToAction("Index", new { userId = saveTweetDto.Id }); // Redirect to the tweet index page for the user
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"An error occurred while saving the tweet: {ex.Message}";
+                // Log the exception
+                return RedirectToAction("Index", "Home"); // Redirect to the home page with an error message
+            }
         }
 
         [HttpGet("like")]
