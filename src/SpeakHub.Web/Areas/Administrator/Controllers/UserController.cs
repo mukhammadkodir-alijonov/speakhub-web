@@ -5,7 +5,7 @@ using SpeakHub.Service.Interfaces.Users;
 
 namespace SpeakHub.Web.Areas.Administrator.Controllers;
 [Route("adminUsers")]
-public class UserController : Controller
+public class UserController : BaseController
 {
     private readonly IUserService _userService;
     private readonly int pageSize = 20;

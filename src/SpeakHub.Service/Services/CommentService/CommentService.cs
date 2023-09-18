@@ -24,9 +24,7 @@ namespace SpeakHub.Service.Services.Comments
             {
                 var entity = new Comment()
                 {
-                    Id = commentDto.Id,
                     CreatedAt = TimeHelper.GetCurrentServerTime(),
-                    LastUpdatedAt = TimeHelper.GetCurrentServerTime(),
                     CommentText = commentDto.CommentText,
                 };
                 var res = _repository.Comments.Add(entity);

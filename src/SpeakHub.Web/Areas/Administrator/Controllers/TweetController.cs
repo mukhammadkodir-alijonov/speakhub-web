@@ -4,8 +4,8 @@ using SpeakHub.Service.Interfaces.Tweets;
 
 namespace SpeakHub.Web.Areas.Administrator.Controllers
 {
-    [Route("admin/tweets")]
-    public class TweetController : Controller
+    [Route("adminTweets")]
+    public class TweetController : BaseController
     {
         private readonly ITweetService _tweetService;
 
@@ -13,7 +13,7 @@ namespace SpeakHub.Web.Areas.Administrator.Controllers
         {
             _tweetService = tweetService;
         }
-        [HttpGet("getId")]
+        [HttpGet("getid")]
         public async Task<IActionResult> Index(int userId)
         {
             try
@@ -35,7 +35,7 @@ namespace SpeakHub.Web.Areas.Administrator.Controllers
             {
                 bool result = await _tweetService.UpdateTweetAsync(id, editTweetDto);
                 SetTempMessage(result, "Tweet updated successfully.", "Failed to update tweet.");
-                return RedirectToAction("Index", new { userId = editTweetDto.Id }); // Redirect to the tweet index page for the user
+                return RedirectToAction("Index", new { userId = editTweetDto}); // Redirect to the tweet index page for the user
             }
             catch (Exception ex)
             {

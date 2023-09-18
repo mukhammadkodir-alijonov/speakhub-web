@@ -17,12 +17,10 @@ namespace SpeakHub.Web.Controllers.Accounts
     public class AccountsController : Controller
     {
         private readonly IAccountService _service;
-        private readonly IAdminService _adminService;
 
-        public AccountsController(IAccountService accountService, IAdminService adminService)
+        public AccountsController(IAccountService accountService)
         {
             this._service = accountService;
-            this._adminService= adminService;
         }
         [HttpGet("register")]
         public ViewResult Register() => View("Register");
@@ -60,17 +58,14 @@ namespace SpeakHub.Web.Controllers.Accounts
                         HttpOnly = true,
                         SameSite = SameSiteMode.Strict
                     });
-                    var user = await _adminService.GetEmailAsync(accountLoginDto.Email);
-                    if (user != null)
+                    var role = await _service.RoleCheckerAsync(accountLoginDto.Email);
+                    if (role == "User")
                     {
-                        if (Enum.IsDefined(typeof(Role), user.Role))
-                        {
-                            return RedirectToAction("Index", "Home", new { area = "administrator" });
-                        }
-                        else
-                        {
                             return RedirectToAction("Index", "Home", new { area = "" });
-                        }
+                    }
+                    if(role == "Admin")
+                    {
+                        return RedirectToAction("Index", "Home", new { area = "administrator" });
                     }
                     else
                     {

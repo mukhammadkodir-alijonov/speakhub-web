@@ -3,8 +3,8 @@ using SpeakHub.Service.Interfaces.Comments;
 
 namespace SpeakHub.Web.Areas.Administrator.Controllers
 {
-    [Route("admin/comments")]
-    public class CommentController : Controller
+    [Route("adminComments")]
+    public class CommentController : BaseController
     {
         private readonly ICommentService _commentService;
 

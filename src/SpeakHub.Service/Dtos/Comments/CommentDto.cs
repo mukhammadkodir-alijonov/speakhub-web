@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SpeakHub.Service.Dtos.Comments
 {
-    public class CommentDto : Auditable
+    public class CommentDto
     {
         [Comment]
         public string CommentText { get; set; } = string.Empty;

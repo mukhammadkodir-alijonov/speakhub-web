@@ -194,4 +194,15 @@ public class AccountService : IAccountService
 
         return res > 0;
     }
+    public async Task<string> RoleCheckerAsync(string email)
+    {
+        var checkAdmin = await _repository.Admins.FirstOrDefault(x => x.Email == email);
+        if (checkAdmin == null)
+        {
+            var checkUser = await _repository.Users.FirstOrDefault(x => x.Email == email);
+            return "User";
+        }
+        else
+            return "Admin";
+    }
 }

@@ -3,11 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SpeakHub.Web.Areas.Administrator.Controllers
 {
-    public class HomeController : BaseController
+    [Area("administrator")]
+    //[Authorize(Roles = "Admin")]
+    public class BaseController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+
     }
 }

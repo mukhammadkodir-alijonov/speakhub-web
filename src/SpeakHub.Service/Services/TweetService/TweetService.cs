@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using SpeakHub.DataAccess.Interfaces.Common;
 using SpeakHub.Domain.Entities.Tweets;
 using SpeakHub.Service.Common.Exceptions;
@@ -33,23 +34,19 @@ namespace SpeakHub.Service.Services.TweetService
                                }).ToListAsync();
             return query;
         }
-        public async Task<bool> CreateTweetAsync(int tweetId, TweetDto tweetDto)
+        public async Task<bool> CreateTweetAsync(TweetDto tweetDto)
         {
-            var check = await _repository.Tweets.FirstOrDefault(x => x.Id == tweetId);
-            if (check == null)
+            var entity = new Tweet()
             {
-                var entity = new Tweet()
-                {
-                    Id = tweetDto.Id,
-                    CreatedAt = TimeHelper.GetCurrentServerTime(),
-                    LastUpdatedAt = TimeHelper.GetCurrentServerTime(),
-                    TweetText = tweetDto.TweetText,
-                };
-                var res = _repository.Tweets.Add(entity);
-                var result = await _repository.SaveChangesAsync();
-                return result > 0;
-            }
-            else throw new StatusCodeException(HttpStatusCode.BadRequest, "This details for Tweet are already exist!");
+                //Id = tweetDto.Id,
+                CreatedAt = TimeHelper.GetCurrentServerTime(),
+                LastUpdatedAt = TimeHelper.GetCurrentServerTime(),
+                TweetText = tweetDto.TweetText,
+                UserId = HttpContextHelper.UserId
+            };
+            var res = _repository.Tweets.Add(entity);
+            var result = await _repository.SaveChangesAsync();
+            return result > 0;
         }
         public async Task<bool> UpdateTweetAsync(int id, EditTweetDto editTweetDto)
         {
@@ -84,7 +81,7 @@ namespace SpeakHub.Service.Services.TweetService
             var result = await _repository.SaveChangesAsync();
             return result > 0;
         }
-        public async Task<bool> SaveTweetAsync(int tweetId, SaveTweetDto saveTweetDto)
+        /*public async Task<bool> SaveTweetAsync(int tweetId, SaveTweetDto saveTweetDto)
         {
             var savetweet = await _repository.Tweets.FirstOrDefault(x => x.Id == tweetId);
             if (savetweet == null)
@@ -100,7 +97,7 @@ namespace SpeakHub.Service.Services.TweetService
                 return rresult > 0;
             }
             else throw new StatusCodeException(HttpStatusCode.BadRequest, "This details for TweetSave are already exist!");
-        }
+        }*/
         public async Task<List<LikesPerTweetViewModel>> GetAllLikeByTweetAsync(int tweetId)
         {
             var query = await (from like in _repository.Likes.GetAll().Where(x => x.TweetId == tweetId).OrderByDescending(x => x.CreatedAt)
