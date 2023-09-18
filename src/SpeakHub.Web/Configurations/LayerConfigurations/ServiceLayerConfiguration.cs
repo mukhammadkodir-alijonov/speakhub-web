@@ -41,6 +41,8 @@ namespace SpeakHub.Configurations.LayerConfigurations
             services.AddScoped<IImageService, ImageService>();
             services.AddScoped<IPaginatorService, PaginatorService>();
 
+            //swagger auth
+            //services.ConfigureSwaggerAuthorize();
 
             services.AddMemoryCache();
             services.AddHttpContextAccessor();

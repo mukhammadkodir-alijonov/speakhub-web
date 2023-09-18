@@ -4,8 +4,8 @@ using SpeakHub.Service.Interfaces.Follows;
 
 namespace SpeakHub.Web.Controllers.Follows
 {
-    [Route("follows")]
-    [Authorize]
+    //[Route("follows")]
+    //[Authorize]
     public class FollowController : Controller
     {
         private readonly IFollowService _followService;
@@ -14,7 +14,7 @@ namespace SpeakHub.Web.Controllers.Follows
         {
             _followService = followService;
         }
-        [HttpGet]
+        [HttpGet("get")]
         public IActionResult Index()
         {
             return View();

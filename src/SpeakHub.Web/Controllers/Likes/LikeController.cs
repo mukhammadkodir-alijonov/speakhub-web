@@ -5,7 +5,7 @@ using SpeakHub.Service.Interfaces.Likes;
 namespace SpeakHub.Web.Controllers
 {
     [Route("likes")]
-    [Authorize]
+    //[Authorize]
     public class LikeController : Controller
     {
         private readonly ILikeService _likeService;

@@ -7,7 +7,7 @@ using SpeakHub.Service.Interfaces.Tweets;
 namespace SpeakHub.Web.Controllers
 {
     [Route("tweets")]
-    [Authorize]
+    //[Authorize]
     public class TweetController : Controller
     {
         private readonly ITweetService _tweetService;
@@ -16,7 +16,7 @@ namespace SpeakHub.Web.Controllers
         {
             _tweetService = tweetService;
         }
-        [HttpGet("getId")]
+        [HttpGet("id")]
         public async Task<IActionResult> Index(int userId)
         {
             try
