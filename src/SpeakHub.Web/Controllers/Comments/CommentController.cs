@@ -7,7 +7,7 @@ using SpeakHub.Service.Interfaces.Comments;
 namespace SpeakHub.Web.Controllers.Comments
 {
     [Route("comments")]
-    [Authorize]
+    //[Authorize]
     public class CommentController : Controller
     {
         private readonly ICommentService _commentService;
