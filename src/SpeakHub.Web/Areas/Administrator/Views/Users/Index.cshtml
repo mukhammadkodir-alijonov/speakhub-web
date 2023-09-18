@@ -23,7 +23,7 @@
                     <td>@user.PhoneNumber</td>
                     <td>@user.Email</td>
                     <td>@user.Image</td>
-                    <td><a asp-area="adminUsers" asp-controller="Users" asp-action="Update" asp-route-userid="@user.Id" class=" btn btn-primary">Edit</a></td>
+                    <td><a asp-area="adminUsers" asp-controller="User" asp-action="Update" asp-route-userid="@user.Id" class=" btn btn-primary">Edit</a></td>
                     <td><a asp-controller="User" asp-action="Delete" asp-route-userid="@user.Id" class="btn btn-danger">Delete</a></td>
                     <td><a asp-controller="User" asp-action="UpdateImage" asp-route-userid="@user.Id" class="btn btn-danger">UpdateImage</a></td>
                     <td><a asp-controller="User" asp-action="DeleteImage" asp-route-userid="@user.Id" class="btn btn-danger">DeleteImage</a></td>

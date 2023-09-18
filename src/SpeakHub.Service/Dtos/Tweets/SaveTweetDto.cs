@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SpeakHub.Service.Dtos.Tweets
 {
-    public class SaveTweetDto : Auditable
+    public class SaveTweetDto
     {
         public string TweetSave { get; set; } = string.Empty;
     }

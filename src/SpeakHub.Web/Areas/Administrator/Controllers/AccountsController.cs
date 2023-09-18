@@ -4,9 +4,8 @@ using SpeakHub.Service.Dtos.Admins;
 using SpeakHub.Service.Interfaces.Accounts;
 
 namespace SpeakHub.Web.Areas.Administrator.Controllers;
-[Route("admin/accounts")]
-[Area("administrator")]
-public class AccountsController : Controller
+[Route("adminAccounts")]
+public class AccountsController : BaseController
 {
     private readonly IAccountService _service;
 
@@ -26,7 +25,7 @@ public class AccountsController : Controller
             bool result = await _service.AdminRegisterAsync(adminRegisterDto);
             if (result)
             {
-                return RedirectToAction("login", "accounts", new { area = "administrator" });
+                return RedirectToAction("login", "adminAccounts", new { area = "administrator" });
             }
             else
             {

@@ -13,5 +13,6 @@ namespace SpeakHub.Service.Interfaces.Accounts
         public Task SendCodeAsync(SendToEmailDto sendToEmail);
         public Task<bool> VerifyPasswordAsync(UserResetPasswordDto userResetPassword);
         public Task<bool> DeleteByPasswordAsync(UserDeleteDto userDeleteDto);
+        public Task<string> RoleCheckerAsync(string email);
     }
 }

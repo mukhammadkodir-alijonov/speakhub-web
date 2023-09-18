@@ -44,6 +44,7 @@ namespace SpeakHub.Configurations.LayerConfigurations
             //swagger auth
             //services.ConfigureSwaggerAuthorize();
 
+            services.AddHttpContextAccessor();
             services.AddMemoryCache();
             services.AddHttpContextAccessor();
             services.AddAutoMapper(typeof(MappingConfiguration));

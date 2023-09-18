@@ -33,13 +33,13 @@ namespace SpeakHub.Web.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateAsync(int tweetId, TweetDto tweetDto)
+        public async Task<IActionResult> CreateAsync(TweetDto tweetDto)
         {
             try
             {
-                bool result = await _tweetService.CreateTweetAsync(tweetId, tweetDto);
+                bool result = await _tweetService.CreateTweetAsync(tweetDto);
                 SetTempMessage(result, "Tweet created successfully.", "Failed to create tweet.");
-                return RedirectToAction("Index", new { userId = tweetDto.Id }); // Redirect to the tweet index page for the user
+                return RedirectToAction("Index", new { userId = tweetDto}); // Redirect to the tweet index page for the user
             }
             catch (Exception ex)
             {
@@ -56,7 +56,7 @@ namespace SpeakHub.Web.Controllers
             {
                 bool result = await _tweetService.UpdateTweetAsync(id, editTweetDto);
                 SetTempMessage(result, "Tweet updated successfully.", "Failed to update tweet.");
-                return RedirectToAction("Index", new { userId = editTweetDto.Id }); // Redirect to the tweet index page for the user
+                return RedirectToAction("Index", new { userId = editTweetDto}); // Redirect to the tweet index page for the user
             }
             catch (Exception ex)
             {
@@ -86,7 +86,7 @@ namespace SpeakHub.Web.Controllers
             }
             return RedirectToAction("Index", "Home"); // Redirect to the home page with an error message
         }
-        [HttpPost("save")]
+        /*[HttpPost("save")]
         public async Task<IActionResult> SaveAsync(int id, SaveTweetDto saveTweetDto)
         {
             try
@@ -101,7 +101,7 @@ namespace SpeakHub.Web.Controllers
                 // Log the exception
                 return RedirectToAction("Index", "Home"); // Redirect to the home page with an error message
             }
-        }
+        }*/
 
         [HttpGet("like")]
         public async Task<IActionResult> LikesAsync(int tweetId)

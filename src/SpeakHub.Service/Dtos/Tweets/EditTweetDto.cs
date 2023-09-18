@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SpeakHub.Service.Dtos.Tweets
 {
-    public class EditTweetDto : Auditable
+    public class EditTweetDto
     {
         [TweetCheck]
         public string EditTweetText { get; set; } = string.Empty;
