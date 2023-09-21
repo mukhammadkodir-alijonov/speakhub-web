@@ -12,8 +12,8 @@ using SpeakHub.DataAccess.DbContexts;
 namespace SpeakHub.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230917180534_initialcomment")]
-    partial class initialcomment
+    [Migration("20230919193059_InitialComment")]
+    partial class InitialComment
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,6 +54,10 @@ namespace SpeakHub.DataAccess.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Gender")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -249,6 +253,10 @@ namespace SpeakHub.DataAccess.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Gender")
                         .IsRequired()
                         .HasColumnType("text");
 

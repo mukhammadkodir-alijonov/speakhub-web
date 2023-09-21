@@ -65,7 +65,8 @@ namespace SpeakHub.Web.Controllers.Accounts
                     }
                     if(role == "Admin")
                     {
-                        return RedirectToAction("Index", "Home", new { area = "administrator" });
+                        //return RedirectToAction("Index", "Home", new { area = "administrator" });
+                        return RedirectToRoute(new { area = "administrator", controller = "Home", action = "Index" });
                     }
                     else
                     {

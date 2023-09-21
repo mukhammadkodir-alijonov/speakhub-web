@@ -3,53 +3,49 @@
 @{
     Layout = "_AccountLayout.cshtml";
 }
-@* <div class="card w-500px h-470px mt-20 mb-100" style="margin-left:auto; margin-right:auto;">
-    <div class="py-10 pe-10 px-10">
-        <form asp-area="" asp-controller="accounts" asp-action="login" method="post">
-            <label class="form-label fs-2">Shaxsiy accountga kirish</label>
-            <div class="mt-8">
-                <label class="required form-label">Email</label>
-                <input type="email" asp-for=Email class="form-control form-control-solid" placeholder="example@gmail.com" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="mt-8">
-                <label class="required form-label">Parol</label>
-                <input type="password" asp-for=Password class="form-control form-control-solid" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="mt-10">
-                <input type="submit" class="btn btn-success" style="width:100%;" value="Kirish" />
-            </div>
-            <div class="mt-8 mb-8">
-                <a class="btn btn-primary" style="width:100%;" asp-controller="accounts" asp-action="register">
-                    Ro'yxatdan o'tish
-                </a>
-            </div>
-        </form>
-    </div>
-</div> *@
-<div class="card w-500px h-470px mt-20 mb-100" style="backdrop-filter: blur(15px);  background-color: rgba(255,255,255,0.13); margin-left:auto; margin-right:auto; box-shadow: 0 0 40px rgba(8,7,16,0.6);">
-    <div class="py-10 pe-10 px-10">
-        <form asp-area="" asp-controller="accounts" asp-action="login" method="post">
-            <label class="form-label fs-2">Sign In</label>
-            <div class="form__inputBox mt-5 ">
-                <label class="required form-label">Email</label>
-                <input type="email" asp-for=Email class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form__inputBox mt-5 ">
-                <label class="required form-label">Password</label>
-                <input type="password" asp-for=Password class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="mt-20">
-                <input type="submit" class="btn btn-primary" style="width:100%;" value="Sign In" />
-            </div>
-            <div class="mt-8 mb-10 ">
-                <a class="btn btn-primary" style="width:100%;" asp-controller="accounts" asp-action="register">
-                    Sign Up
-                </a>
-            </div>
-        </form>
-    </div>
+<div class="limiter">
+	<div class="container-login100">
+		<div class="wrap-login100">
+			 <form class="login100-form validate-form" asp-controller="accounts" asp-action="login" method="post">
+				<span class="login100-form-title p-b-26">
+					Welcome to SpeakHub LogIn
+				</span>
+				<span class="login100-form-title p-b-48">
+					<i class="zmdi zmdi-font"></i>
+				</span>
+
+				<div class="wrap-input100 validate-input" data-validate="Valid email is: example@gmail.com">
+					<input asp-for="Email" class="input100" type="text" name="Email"> <!-- Use tag helpers consistently -->
+					<span asp-validation-for="Email" class="focus-input100" data-placeholder="Email"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Enter password">
+					<span class="btn-show-pass">
+						<i class="zmdi zmdi-eye"></i>
+					</span>
+					<input asp-for="Password" class="input100" type="password" name="Password"> <!-- Use tag helpers consistently -->
+					<span asp-validation-for="Password" class="focus-input100" data-placeholder="Password"></span>
+				</div>
+
+				<div class="container-login100-form-btn">
+					<div class="wrap-login100-form-btn">
+						<div class="login100-form-bgbtn"></div>
+						<button class="login100-form-btn">
+							Login
+						</button>
+					</div>
+				</div>
+
+				<div class="text-center p-t-115">
+					<span class="txt1">
+						Don’t have an account?
+					</span>
+
+					<a class="txt2" asp-controller="accounts" asp-action="register">
+						Sign Up
+					</a>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>

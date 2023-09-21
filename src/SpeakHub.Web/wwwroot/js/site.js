@@ -1,153 +1,166 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿
+(function ($) {
+    "use strict";
 
-// Write your JavaScript code.
-// app.js
-import { tweets } from "./data.js";
-const tweetList = document.getElementById("tweetList");
 
-function getTweets() {
-    tweets.map((tweet) => {
-        tweetList.innerHTML += `<li class="timeline-border py-3 px-4">
-    <!-- profile-pic -->
-    <figure class="profile-pic">
-      <img
-        class="rounded-full"
-        src="${tweet.profilePicture}"
-        alt="user-profil-pic"
-      />
-    </figure>
-    <!-- tweet-area -->
-    <div class="ml-3 mt-2 w-full">
-      <!-- user-name -->
-      <div class="tweet-username">
-        <div class="font-bold text-textColor">
-          <a href="#">${tweet.name}</a>
-        </div>
-        <div class="flex text-lightGray">
-          <div class="px-1 text-lightGray">
-            <a href="#">${tweet.username}</a>
-          </div>
-          <div>
-            <span>·</span>
-          </div>
-          <div class="px-1">
-            <a href="#">${tweet.date}</a>
-          </div>
-        </div>
-      </div>
-      <!-- tweet-text -->
-      <div class="tweet-text">
-        <p>
-          ${tweet.text}
-        </p>
-      </div>
-      <!-- tweet-pic -->
-      <figure class="pt-3">
-        <a href="#">
-          <img
-            class="max-h-72 w-full object-cover rounded-2xl"
-            src="${tweet.image}"
-            alt=""
-          />
-        </a>
-      </figure>
-      <!-- reaction-icons -->
-      <div class="reaction-icons">
-        <!-- reply-icon -->
-        <a href="#">
-          <img
-            src="./assets/icons/tweet/reply.svg"
-            alt="reply-icon"
-          />
-        </a>
-        <!-- retweet-icon -->
-        <a href="#">
-          <img
-            src="./assets/icons/tweet/retweet.svg"
-            alt="retweet-icon"
-          />
-        </a>
-        <!-- like-icon -->
-        <a href="#">
-          <img src="./assets/icons/tweet/like.svg" alt="like-icon" />
-        </a>
-        <!-- share-icon -->
-        <a href="#">
-          <img
-            src="./assets/icons/tweet/share.svg"
-            alt="share-icon"
-          />
-        </a>
-      </div>
-    </div>
-  </li>`;
-    });
-}
-getTweets();
+    /*==================================================================
+    [ Focus input ]*/
+    $('.input100').each(function () {
+        $(this).on('blur', function () {
+            if ($(this).val().trim() != "") {
+                $(this).addClass('has-val');
+            }
+            else {
+                $(this).removeClass('has-val');
+            }
+        })
+    })
 
-//data.js
-export const tweets = [
-    {
-        id: 0,
-        profilePicture: "assets/images/user-profil.png",
-        name: "Altan Kurt",
-        username: "@aaltankurt",
-        date: "1h",
-        text: "I had gone out to take photos early in the morning, and it was my lucky day!",
-        image: "assets/images/tw-pic-2.png",
-    },
-    {
-        id: 1,
-        profilePicture: "assets/images/tw-github.png",
-        name: "GitHub",
-        username: "@github",
-        date: "2h",
-        text: "How are you protecting your organization from security threats? Join us at #OfficialCyberSummit to learn how GitHub can help.",
-        image: "assets/images/tw-pic-1.png",
-    },
-    {
-        id: 2,
-        profilePicture: "assets/images/tw-deno.png",
-        name: "Deno",
-        username: "@deno_land",
-        date: "4d",
-        text: "Got a question for one of our engineers? Come ask it at our next Office Hours — tomorrow, Friday 9am PT, on our Discord! RVSP -> discord.gg/deno",
-        image: "",
-    },
-];
-//navbar.js
-// select navigation buttons
-const navButtons = document.querySelectorAll(".nav-button");
 
-// reset the properties of the navigation buttons
-const resetNavButtons = () => {
-    navButtons.forEach((btn) => {
-        btn.classList.remove("active");
+    /*==================================================================
+    [ Validate ]*/
+    var input = $('.validate-input .input100');
 
-        btn.style.fontWeight = 400;
-        const img = btn.querySelector("img");
-        if (img) {
-            img.src = img.src.replace("-fill", "");
+    $('.validate-form').on('submit', function () {
+        var check = true;
+
+        for (var i = 0; i < input.length; i++) {
+            if (validate(input[i]) == false) {
+                showValidate(input[i]);
+                check = false;
+            }
         }
+
+        return check;
     });
-};
 
-// make the selected button active
-const setActiveNavButton = (button) => {
-    button.classList.add("active");
 
-    button.style.fontWeight = 700;
-    const img = button.querySelector("img");
-    if (img) {
-        img.src = img.src.replace(".svg", "-fill.svg");
+    $('.validate-form .input100').each(function () {
+        $(this).focus(function () {
+            hideValidate(this);
+        });
+    });
+
+    function validate(input) {
+        if ($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
+            if ($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
+                return false;
+            }
+        }
+        else {
+            if ($(input).val().trim() == '') {
+                return false;
+            }
+        }
     }
-};
 
-// interaction with the buttons
-navButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-        resetNavButtons();
-        setActiveNavButton(button);
+    function showValidate(input) {
+        var thisAlert = $(input).parent();
+
+        $(thisAlert).addClass('alert-validate');
+    }
+
+    function hideValidate(input) {
+        var thisAlert = $(input).parent();
+
+        $(thisAlert).removeClass('alert-validate');
+    }
+
+    /*==================================================================
+    [ Show pass ]*/
+    var showPass = 0;
+    $('.btn-show-pass').on('click', function () {
+        if (showPass == 0) {
+            $(this).next('input').attr('type', 'text');
+            $(this).find('i').removeClass('zmdi-eye');
+            $(this).find('i').addClass('zmdi-eye-off');
+            showPass = 1;
+        }
+        else {
+            $(this).next('input').attr('type', 'password');
+            $(this).find('i').addClass('zmdi-eye');
+            $(this).find('i').removeClass('zmdi-eye-off');
+            showPass = 0;
+        }
+
     });
+
+
+})(jQuery);
+
+/*
+Register 
+*/
+
+
+// Selecting form and input elements
+const form = document.querySelector("form");
+const passwordInput = document.getElementById("password");
+const passToggleBtn = document.getElementById("pass-toggle-btn");
+
+// Function to display error messages
+const showError = (field, errorText) => {
+    field.classList.add("error");
+    const errorElement = document.createElement("small");
+    errorElement.classList.add("error-text");
+    errorElement.innerText = errorText;
+    field.closest(".form-group").appendChild(errorElement);
+}
+
+// Function to handle form submission
+const handleFormData = (e) => {
+    e.preventDefault();
+
+    // Retrieving input elements
+    const fullnameInput = document.getElementById("fullname");
+    const emailInput = document.getElementById("email");
+    const dateInput = document.getElementById("date");
+    const genderInput = document.getElementById("gender");
+
+    // Getting trimmed values from input fields
+    const fullname = fullnameInput.value.trim();
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+    const date = dateInput.value;
+    const gender = genderInput.value;
+
+    // Regular expression pattern for email validation
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+    // Clearing previous error messages
+    document.querySelectorAll(".form-group .error").forEach(field => field.classList.remove("error"));
+    document.querySelectorAll(".error-text").forEach(errorText => errorText.remove());
+
+    // Performing validation checks
+    if (fullname === "") {
+        showError(fullnameInput, "Enter your full name");
+    }
+    if (!emailPattern.test(email)) {
+        showError(emailInput, "Enter a valid email address");
+    }
+    if (password === "") {
+        showError(passwordInput, "Enter your password");
+    }
+    if (date === "") {
+        showError(dateInput, "Select your date of birth");
+    }
+    if (gender === "") {
+        showError(genderInput, "Select your gender");
+    }
+
+    // Checking for any remaining errors before form submission
+    const errorInputs = document.querySelectorAll(".form-group .error");
+    if (errorInputs.length > 0) return;
+
+    // Submitting the form
+    form.submit();
+}
+
+// Toggling password visibility
+passToggleBtn.addEventListener('click', () => {
+    passToggleBtn.className = passwordInput.type === "password" ? "fa-solid fa-eye-slash" : "fa-solid fa-eye";
+    passwordInput.type = passwordInput.type === "password" ? "text" : "password";
 });
+
+// Handling form submission event
+form.addEventListener("submit", handleFormData);

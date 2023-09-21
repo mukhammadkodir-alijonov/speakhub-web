@@ -14,6 +14,7 @@ namespace SpeakHub.Service.ViewModels.AdminViewModels
         public string ImagePath { get; set; } = String.Empty;
 
         public string PhoneNumber { get; set; } = String.Empty;
+        public string Gender { get; set; } = String.Empty;
 
         public DateTime BirthDate { get; set; } = default!;
 
@@ -30,6 +31,7 @@ namespace SpeakHub.Service.ViewModels.AdminViewModels
                 Id = model.Id,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
+                Gender = model.Gender,
                 ImagePath = model.Image!,
                 PhoneNumber = model.PhoneNumber,
                 BirthDate = model.BirthDate,
