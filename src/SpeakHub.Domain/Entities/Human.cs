@@ -10,7 +10,7 @@ namespace SpeakHub.Domain.Entities
 
         public string? Image { get; set; }
 
-        //public string Gender { get; set; } = string.Empty; this will add next version of app
+        public string Gender { get; set; } = string.Empty;
 
         public DateTime BirthDate { get; set; }
 

@@ -56,9 +56,14 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.MapAreaControllerRoute(
+/*app.MapAreaControllerRoute(
     name: "users",
     areaName: "users",
-    pattern: "users/{controller=Home}/{action=Index}/{id?}");
+    pattern: "users/{controller=Home}/{action=Index}/{id?}");*/
+
+app.MapAreaControllerRoute(
+   name: "administrator",
+   areaName: "Administrator",
+   pattern: "administrator/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

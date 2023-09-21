@@ -14,6 +14,7 @@ namespace SpeakHub.Service.Dtos.Admins
         public string LastName { get; set; } = String.Empty;
         public IFormFile Image { get; set; } = default!;
         public string? ImagePath { get; set; }
+        public string Gender { get; set; } = String.Empty;
 
         [Required(ErrorMessage = "Phone Number Required")]
         [Phone(ErrorMessage = "The phone number was entered incorrectly")]
@@ -27,6 +28,7 @@ namespace SpeakHub.Service.Dtos.Admins
             {
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
+                Gender = dto.Gender,
                 Image = dto.ImagePath,
                 PhoneNumber = dto.PhoneNumber,
                 BirthDate = dto.BirthDate,

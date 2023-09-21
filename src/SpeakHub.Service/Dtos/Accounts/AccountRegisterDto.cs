@@ -14,6 +14,8 @@ namespace SpeakHub.Service.Dtos.Accounts
 
         [Required(ErrorMessage = "Enter a surname!")]
         public string LastName { get; set; } = String.Empty;
+        [Required(ErrorMessage ="Select a option")]
+        public string Gender { get; set; } = string.Empty;
         public DateTime BirthDate { get; set; }
     }
 }

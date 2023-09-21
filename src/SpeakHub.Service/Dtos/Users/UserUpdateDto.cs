@@ -14,7 +14,8 @@ namespace SpeakHub.Service.Dtos.Users
 
         [Required(AllowEmptyStrings = false), PhoneNumber]
         public string PhoneNumber { get; set; } = string.Empty;
-
+        [Required]
+        public string Gender { get; set; } = string.Empty;
         public IFormFile? Image { get; set; }
     }
 }

@@ -108,6 +108,7 @@ namespace SpeakHub.Service.Services.AdminService
                     admin.LastName = String.IsNullOrEmpty(adminUpdatedDto.LastName) ? admin.LastName : adminUpdatedDto.LastName;
                     admin.Image = String.IsNullOrEmpty(adminUpdatedDto.ImagePath) ? admin.Image : adminUpdatedDto.ImagePath;
                     admin.PhoneNumber = String.IsNullOrEmpty(adminUpdatedDto.PhoneNumber) ? admin.PhoneNumber : adminUpdatedDto.PhoneNumber;
+                    admin.Gender= String.IsNullOrEmpty(adminUpdatedDto.Gender) ? admin.Gender : adminUpdatedDto.Gender;
                     admin.BirthDate = admin.BirthDate;
                     if (adminUpdatedDto.Image is not null)
                     {

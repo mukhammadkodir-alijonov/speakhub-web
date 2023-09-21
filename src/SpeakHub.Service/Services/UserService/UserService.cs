@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Http;
 using SpeakHub.DataAccess.DbContexts;
 using SpeakHub.DataAccess.Interfaces.Common;
+using SpeakHub.Domain.Entities.Admins;
 using SpeakHub.Domain.Entities.Users;
 using SpeakHub.Service.Common.Exceptions;
 using SpeakHub.Service.Common.Helpers;
 using SpeakHub.Service.Common.Utils;
+using SpeakHub.Service.Dtos.Admins;
 using SpeakHub.Service.Dtos.Users;
 using SpeakHub.Service.Interfaces.Common;
 using SpeakHub.Service.Interfaces.Users;
@@ -81,6 +83,7 @@ namespace SpeakHub.Service.Services.UserService
                     res.FirstName = string.IsNullOrWhiteSpace(entity.FirstName) ? temp.FirstName : entity.FirstName;
                     res.LastName = string.IsNullOrWhiteSpace(entity.LastName) ? temp.LastName : entity.LastName;
                     res.PhoneNumber = string.IsNullOrWhiteSpace(entity.PhoneNumber) ? temp.PhoneNumber : entity.PhoneNumber;
+                    res.Gender = String.IsNullOrEmpty(entity.Gender) ? temp.Gender : temp.Gender;
                     if (entity.Image is not null)
                     {
                         await _imageService.DeleteImageAsync(temp.Image!);

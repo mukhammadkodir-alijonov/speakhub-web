@@ -25,7 +25,7 @@ public class AccountsController : BaseController
             bool result = await _service.AdminRegisterAsync(adminRegisterDto);
             if (result)
             {
-                return RedirectToAction("login", "adminAccounts", new { area = "administrator" });
+                return RedirectToAction("login", "accounts", new { area = "" });
             }
             else
             {

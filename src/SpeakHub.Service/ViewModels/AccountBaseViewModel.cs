@@ -9,6 +9,7 @@
         public string LastName { get; set; } = String.Empty;
 
         public string PhoneNumber { get; set; } = String.Empty;
+        public string Gender { get; set; } = String.Empty;
 
         public string ImagePath { get; set; } = String.Empty;
     }
