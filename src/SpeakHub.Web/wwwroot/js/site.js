@@ -164,3 +164,11 @@ passToggleBtn.addEventListener('click', () => {
 
 // Handling form submission event
 form.addEventListener("submit", handleFormData);
+
+
+
+
+
+
+
+

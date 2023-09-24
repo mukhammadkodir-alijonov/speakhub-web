@@ -34,7 +34,7 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
-{
+{    
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "SeakHub API V1");
     c.RoutePrefix = "area/swagger";
 });
@@ -45,7 +45,6 @@ app.UseStatusCodePages(async context =>
     if (context.HttpContext.Response.StatusCode == (int)HttpStatusCode.Unauthorized)
     {
         context.HttpContext.Response.Redirect("accounts/login");
-        //context.HttpContext.Response.Redirect("/Home/Error");
     }
 });
 
