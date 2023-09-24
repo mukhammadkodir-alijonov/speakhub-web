@@ -16,17 +16,17 @@ namespace SpeakHub.Web.Controllers.Comments
         {
             _commentService = commentService;
         }
-        [HttpGet]
+        [HttpGet("get")]
         public IActionResult Index()
         {
             return View();
         }
         [HttpPost("create")]
-        public async Task<IActionResult> CreateAsync(int tweetId, CommentDto commentDto)
+        public async Task<IActionResult> CreateAsync(CommentDto commentDto)
         {
             try
             {
-                bool result = await _commentService.CreateCommentAsync(tweetId, commentDto);
+                bool result = await _commentService.CreateCommentAsync(commentDto);
                 if (result)
                 {
                     return RedirectToAction("Index", "Tweet"); // Redirect to tweet details page

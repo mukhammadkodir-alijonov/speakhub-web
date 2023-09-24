@@ -17,21 +17,19 @@ namespace SpeakHub.Service.Services.Comments
         {
             this._repository = unitOfWork;
         }
-        public async Task<bool> CreateCommentAsync(int tweetId, CommentDto commentDto)
+        public async Task<bool> CreateCommentAsync(CommentDto commentDto)
         {
-            var check = await _repository.Comments.FirstOrDefault(x => x.Id == tweetId);
-            if (check == null)
-            {
                 var entity = new Comment()
                 {
+                    TweetId = commentDto.TweetId,
+                    UserId = commentDto.UserId,
                     CreatedAt = TimeHelper.GetCurrentServerTime(),
                     CommentText = commentDto.CommentText,
+                    //UserId = HttpContextHelper.UserId
                 };
                 var res = _repository.Comments.Add(entity);
                 var result = await _repository.SaveChangesAsync();
                 return result > 0;
-            }
-            else throw new StatusCodeException(HttpStatusCode.BadRequest, "This details for Comment are already exist!");
         }
 
         public async Task<bool> DeleteCommentAsync(int id)

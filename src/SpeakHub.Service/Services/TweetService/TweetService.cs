@@ -38,11 +38,11 @@ namespace SpeakHub.Service.Services.TweetService
         {
             var entity = new Tweet()
             {
-                //Id = tweetDto.Id,
                 CreatedAt = TimeHelper.GetCurrentServerTime(),
-                LastUpdatedAt = TimeHelper.GetCurrentServerTime(),
+                //LastUpdatedAt = TimeHelper.GetCurrentServerTime(),
                 TweetText = tweetDto.TweetText,
-                UserId = HttpContextHelper.UserId
+                //UserId = HttpContextHelper.UserId
+                UserId = tweetDto.Id
             };
             var res = _repository.Tweets.Add(entity);
             var result = await _repository.SaveChangesAsync();
