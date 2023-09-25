@@ -1,10 +1,8 @@
 ﻿using SpeakHub.DataAccess.Interfaces.Common;
 using SpeakHub.Domain.Entities.Comments;
-using SpeakHub.Domain.Entities.Tweets;
 using SpeakHub.Service.Common.Exceptions;
 using SpeakHub.Service.Common.Helpers;
 using SpeakHub.Service.Dtos.Comments;
-using SpeakHub.Service.Dtos.Tweets;
 using SpeakHub.Service.Interfaces.Comments;
 using System.Net;
 
