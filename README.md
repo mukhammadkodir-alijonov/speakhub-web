@@ -16,6 +16,13 @@ Firstly, when the user visits the program, the login page appears, if the user d
 
 ![image](https://github.com/mukhammadkodir-alijonov/speakhub-web/assets/98277057/63f61431-a238-4210-acb7-ddeaf920bab8)
 
+# Swagger
+![image](https://github.com/mukhammadkodir-alijonov/speakhub-web/assets/98277057/f07da52e-ee43-4876-9eb9-d8209370dc9d)
+![image](https://github.com/mukhammadkodir-alijonov/speakhub-web/assets/98277057/00a87992-0d80-45d1-85ba-2a53381f2254)
+![image](https://github.com/mukhammadkodir-alijonov/speakhub-web/assets/98277057/91602cf5-ce60-4ff1-ab43-82c2c0412eda)
+![image](https://github.com/mukhammadkodir-alijonov/speakhub-web/assets/98277057/67baae8e-1b46-488f-9fe0-ad5e698f663a)
+![image](https://github.com/mukhammadkodir-alijonov/speakhub-web/assets/98277057/f1d8c213-bf5b-485f-9bbc-552017e5676e)
+
 # Built with
 .NET 6, ASP.NET core Web(MVC), PostgreSQL
 
