@@ -27,4 +27,4 @@ Firstly, when the user visits the program, the login page appears, if the user d
 .NET 6, ASP.NET core Web(MVC), PostgreSQL
 
 # Contribute
-We are very grateful to everyone who helped us to develop Caravan. Feel free to contact alijonov0608@gmail.com
+We are very grateful to everyone who helped us to develop SpeakHub. Feel free to contact alijonov0608@gmail.com
