@@ -18,7 +18,7 @@ namespace SpeakHub.DataAccess.Repositories.Common
         public UnitOfWork(AppDbContext dbContext)
         {
             this._dbContext = dbContext;
-            Likes = new LikeRepository(dbContext);
+            Likes = new LikeRepository(_dbContext);
             Comments = new CommentRepository(_dbContext);
             Admins = new AdminRepository(_dbContext);
             Tweets = new TweetRepository(_dbContext);
