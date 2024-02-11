@@ -11,7 +11,7 @@ namespace SpeakHub.Service.ViewModels.UserViewModels
         public string LastName { get; set; } = string.Empty;
         public string Gender { get; set; } = string.Empty;
         public string PhoneNumber { get; set; } = string.Empty;
-        public Role UserRole { get; set; } = Role.Admin;
+        public Role UserRole { get; set; } = Role.User;
 
         public string? Image { get; set; }
 
